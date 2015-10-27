@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <SplitPane dividerPositions="0.2935871743486974" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0">
+        <items>
+          <AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" />
+          <AnchorPane maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0">
+               <children>
+                  <Button fx:id="someAction" layoutX="97.0" layoutY="131.0" mnemonicParsing="false" text="Button" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</GridPane>
