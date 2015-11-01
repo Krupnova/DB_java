@@ -108,6 +108,7 @@
                         </Label>
                      </children>
                   </Pane>
+                  <Button fx:id="qwerty" layoutX="62.0" layoutY="288.0" mnemonicParsing="false" text="Button" />
                </children></AnchorPane>
         </items>
       </SplitPane>
