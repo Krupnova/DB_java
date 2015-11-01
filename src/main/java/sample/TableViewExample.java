@@ -48,6 +48,8 @@ public class TableViewExample {
         Hbox.setLayoutX(width / 2 - Hbox.getWidth() / 2);
         // Hbox.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().add(Hbox);
+
+      //  db = new MySQLAccess("clinic", log, psswrd);
     }
 
     private void UpdateTable() throws SQLException {
