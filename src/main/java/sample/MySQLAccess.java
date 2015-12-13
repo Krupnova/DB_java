@@ -25,12 +25,11 @@ public class MySQLAccess {
 
     public MySQLAccess(String dataBaseName, String login, String
             password) throws SQLException, ClassNotFoundException {
-      dataBaseName ="C:/Users/Дарья/IdeaProjects/Project_DB/src/test/resources/Univer.sql";
-        login = "root";
-        password = "0000";
-        //  this.dataBaseName = dataBaseName;
-       // this.login = login;
-       // this.password = password;
+    //  dataBaseName ="C:\\Users\\PC\\IdeaProjects\\DB_java\\src\\main\\resources\\Univer.sql";
+
+          this.dataBaseName = dataBaseName;
+       this.login = login;
+       this.password = password;
         connectToDataBase();
     }
     //Функция для вывода данных каждой таблицы

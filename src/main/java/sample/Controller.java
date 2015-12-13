@@ -108,9 +108,75 @@ public class Controller {
         Hbox.setLayoutX(width / 2 - Hbox.getWidth() / 2);
         // Hbox.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().add(Hbox);
+        log = "root";
+        psswrd = "password";
 
 
+        try {
+           db = new MySQLAccess("univer", log, psswrd);
 
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        /*
+        final TextField login=new TextField();
+        final PasswordField password=new PasswordField();
+        final Label logn=new Label("Введите имя пользователя");
+        final Label pswrd=new Label("Пароль");
+        password.setTooltip(new Tooltip("Введите пароль"));
+        final Button ok=new Button("Ok");
+        box.setAlignment(Pos.TOP_CENTER);
+        box.maxWidth(width);
+        box.minWidth(width);
+        box.getChildren().addAll(logn, login, pswrd, password, ok);
+
+        Hbox.setLayoutX(width / 2 - 80);
+        Hbox.setLayoutY(height/2-80);
+
+        ok.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                try {
+                    log = login.getText();
+                    psswrd = password.getText();
+                    db = new MySQLAccess("univer", log, psswrd);
+                    login.setVisible(false);
+                    password.setVisible(false);
+                    ok.setVisible(false);
+                    logn.setVisible(false);
+                    pswrd.setVisible(false);
+                    OutputInformation();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                    logn.setText("Неверный ввод пароля или логина.");
+
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    logn.setText("Драйвер не найден.");
+                    login.setVisible(false);
+                    password.setVisible(false);
+                    ok.setVisible(false);
+                    logn.setVisible(false);
+                    pswrd.setVisible(false);
+                }
+
+             */
+             /*   try {
+                    login.setVisible(false);
+                    password.setVisible(false);
+                    ok.setVisible(false);
+                    logn.setVisible(false);
+                    pswrd.setVisible(false);
+                    OutputInformation();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }*/
+            //}
+        //});
     }
     private void OutputInformation() throws SQLException {
 
