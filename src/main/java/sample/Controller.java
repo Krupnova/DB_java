@@ -65,8 +65,8 @@ public class Controller {
 
     public Group root;
     private VBox box;
-    private String log;
-    private String psswrd;
+    public String log;
+    public String psswrd;
     public MySQLAccess db;
     private int width=500;
     private int height=400;
@@ -101,7 +101,7 @@ public class Controller {
         box.getChildren().addAll(logn, ok);
 
         log = "root";
-        psswrd = "password";
+        psswrd = "0000";
 
         Hbox.setLayoutX(width / 2 - 135);
         Hbox.setLayoutY(height / 2 - 80);
