@@ -24,6 +24,8 @@ import java.util.LinkedList;
 public class TableViewExample {
     public Group root;
     private VBox box;
+    private String log;
+    private String psswrd;
     public MySQLAccess db;
     private int width=500;
     private int height=400;
@@ -46,10 +48,37 @@ public class TableViewExample {
         Hbox.setAlignment(Pos.CENTER);
         Hbox.getChildren().add(box);
         Hbox.setLayoutX(width / 2 - Hbox.getWidth() / 2);
-        // Hbox.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().add(Hbox);
+        final Label logn=new Label("For connecting to the database press the button ");
+        final Button ok=new Button("Ok");
+        ok.setLayoutX(width / 2 - 80);
+        ok.setLayoutY(height / 2 - 80);
+        box.maxWidth(width);
+        box.minWidth(width);
+        box.getChildren().addAll(logn, ok);
 
-      //  db = new MySQLAccess("clinic", log, psswrd);
+        Hbox.setLayoutX(width / 2 - 135);
+        Hbox.setLayoutY(height / 2 - 80);
+
+        log = "root";
+        psswrd = "password";
+
+        ok.setOnAction(event -> {
+
+            try {
+
+                db = new MySQLAccess("univer", log, psswrd);
+                logn.setVisible(false);
+                ok.setVisible(false);
+                OutputInformation();
+
+            } catch (ClassNotFoundException e) {
+                System.out.println(e);
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        });
+
     }
 
     private void UpdateTable() throws SQLException {

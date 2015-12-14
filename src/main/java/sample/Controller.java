@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,32 +17,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.ResourceBundle;
+
 
 public class Controller {
 
-  /*  @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
-    @FXML // fx:id="someAction"
-    private Button someAction; // Value injected by FXMLLoader
-
-    @FXML
-        // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert someAction != null : "fx:id=\"someAction\" was not injected: check your FXML file 'sample.fxml'.";
-
-        someAction.setOnMouseClicked(
+  /*          someAction.setOnMouseClicked(
                 event -> {
                     try {
                         System.out.println("Mouse clicked triggered");
@@ -107,24 +89,37 @@ public class Controller {
         Hbox.setAlignment(Pos.CENTER);
         Hbox.getChildren().add(box);
         Hbox.setLayoutX(width / 2 - Hbox.getWidth() / 2);
-        // Hbox.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().add(Hbox);
-        final Label logn=new Label("¬ведите  ");
+
+        final Label logn=new Label("For connecting to the database press the button ");
         final Button ok=new Button("Ok");
+        ok.setLayoutX(width / 2 - 80);
+        ok.setLayoutY(height / 2 - 80);
+        box.setAlignment(Pos.TOP_CENTER);
+        box.maxWidth(width);
+        box.minWidth(width);
         box.getChildren().addAll(logn, ok);
+
         log = "root";
         psswrd = "password";
 
-        Hbox.setLayoutX(width / 2 - 80);
-        Hbox.setLayoutY(height/2-80);
+        Hbox.setLayoutX(width / 2 - 135);
+        Hbox.setLayoutY(height / 2 - 80);
 
-        try {
-           db = new MySQLAccess("univer", log, psswrd);
-            OutputInformation();
+        ok.setOnAction(event -> {
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+            try {
+                db = new MySQLAccess("univer", log, psswrd);
+                logn.setVisible(false);
+                ok.setVisible(false);
+                OutputInformation();
+
+            } catch (ClassNotFoundException e) {
+                System.out.println(e);
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        });
 
     }
     private void OutputInformation() throws SQLException {
