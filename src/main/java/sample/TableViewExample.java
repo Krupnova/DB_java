@@ -69,33 +69,30 @@ public class TableViewExample {
                 db = new MySQLAccess("univer", log, psswrd);
                 logn.setVisible(false);
                 ok.setVisible(false);
-               /* final Button qq=new Button("qq");
-                ok.setLayoutX(width / 2 - 80);
-                ok.setLayoutY(height / 2 - 80);
-                box.setAlignment(Pos.TOP_CENTER);
-                box.maxWidth(width);
-                box.minWidth(width);
-                box.getChildren().addAll(qq);*/
+
                 OutputInformation();
 
+
             } catch (ClassNotFoundException e) {
-                System.out.println(e);
+                System.out.println("qq" + e);
             } catch (SQLException e) {
-                System.out.println(e);
+                System.out.println("ww" + e);
             }
         });
 
     }
 
     private void UpdateTable() throws SQLException {
-      //  box = new VBox();
+        box = new VBox();
 
         final HBox hbox = new HBox();
+
         final Button add = new Button("Add");
         final Button delete = new Button("Delete");
         final Button change = new Button("Change");
-        hbox.setAlignment(Pos.BASELINE_CENTER);
         hbox.getChildren().addAll(add, delete, change);
+        hbox.setAlignment(Pos.BASELINE_CENTER);
+        //hbox.getChildren().addAll(add, delete, change);
     }
 
        /* final LinkedList<String> tables = db.getTables();
