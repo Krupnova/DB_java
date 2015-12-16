@@ -51,8 +51,7 @@ public class TableViewExample {
         root.getChildren().add(Hbox);
         final Label logn=new Label("For connecting to the database press the button ");
         final Button ok=new Button("Ok");
-        ok.setLayoutX(width / 2 - 80);
-        ok.setLayoutY(height / 2 - 80);
+
         box.maxWidth(width);
         box.minWidth(width);
         box.getChildren().addAll(logn, ok);
@@ -70,6 +69,13 @@ public class TableViewExample {
                 db = new MySQLAccess("univer", log, psswrd);
                 logn.setVisible(false);
                 ok.setVisible(false);
+               /* final Button qq=new Button("qq");
+                ok.setLayoutX(width / 2 - 80);
+                ok.setLayoutY(height / 2 - 80);
+                box.setAlignment(Pos.TOP_CENTER);
+                box.maxWidth(width);
+                box.minWidth(width);
+                box.getChildren().addAll(qq);*/
                 OutputInformation();
 
             } catch (ClassNotFoundException e) {
@@ -82,16 +88,17 @@ public class TableViewExample {
     }
 
     private void UpdateTable() throws SQLException {
-        box=new VBox();
+      //  box = new VBox();
 
-        final HBox hbox=new HBox();
-        final Button add=new Button("Добавить");
-        final Button delete=new Button("Удалить");
-        final Button change=new Button("Изменить");
-        hbox.getChildren().addAll(add,delete, change);
+        final HBox hbox = new HBox();
+        final Button add = new Button("Add");
+        final Button delete = new Button("Delete");
+        final Button change = new Button("Change");
         hbox.setAlignment(Pos.BASELINE_CENTER);
+        hbox.getChildren().addAll(add, delete, change);
+    }
 
-        final LinkedList<String> tables = db.getTables();
+       /* final LinkedList<String> tables = db.getTables();
 
         final TableView tableView=new TableView();
 
@@ -318,7 +325,7 @@ public class TableViewExample {
         box.getChildren().addAll( btn, cb, tableView);
         root.getChildren().add(box);
     }
-
+*/
     private void OutputInformation() throws SQLException {
 
         UpdateTable();

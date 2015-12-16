@@ -93,15 +93,14 @@ public class Controller {
 
         final Label logn=new Label("For connecting to the database press the button ");
         final Button ok=new Button("Ok");
-        ok.setLayoutX(width / 2 - 80);
-        ok.setLayoutY(height / 2 - 80);
+
         box.setAlignment(Pos.TOP_CENTER);
         box.maxWidth(width);
         box.minWidth(width);
         box.getChildren().addAll(logn, ok);
 
         log = "root";
-        psswrd = "password";
+        psswrd = "0000";
 
         Hbox.setLayoutX(width / 2 - 135);
         Hbox.setLayoutY(height / 2 - 80);
@@ -112,6 +111,13 @@ public class Controller {
                 db = new MySQLAccess("univer", log, psswrd);
                 logn.setVisible(false);
                 ok.setVisible(false);
+                /*final Button qq=new Button("qq");
+                ok.setLayoutX(width / 2 - 80);
+                ok.setLayoutY(height / 2 - 80);
+                box.setAlignment(Pos.TOP_CENTER);
+                box.maxWidth(width);
+                box.minWidth(width);
+                box.getChildren().addAll(qq);*/
                 OutputInformation();
 
             } catch (ClassNotFoundException e) {
@@ -124,13 +130,13 @@ public class Controller {
     }
     private void OutputInformation() throws SQLException {
 
-        HBox hbox=new HBox();
-        Button add=new Button("Add");
-        Button delete=new Button("Delete");
-        hbox.getChildren().addAll(add,delete);
+       final HBox hbox=new HBox();
+        final Button add=new Button("Add");
+        final Button delete=new Button("Delete");
+        final Button change = new Button("Change");
         hbox.setAlignment(Pos.BASELINE_CENTER);
-
-        final LinkedList<String> tables = db.getTables();
+        hbox.getChildren().addAll(add,delete, change);
+       /* final LinkedList<String> tables = db.getTables();
 
         final LinkedList<String> columns = db.getColumns(tables.get(7));
 
@@ -178,7 +184,7 @@ public class Controller {
                     lbl.setText("Enter "+columns.get(i));
 
                     adding.add(txt);
-                    labels.add(lbl);
+                    labels.add(lbl);*/
 //                    box.getChildren().addAll(lbl,txt);
                 }
 
@@ -193,10 +199,10 @@ public class Controller {
 
                     }
                 });*/
-            }
-        });
+          //  }
+        //});
 
 
-    }
+   // }
 
 }
