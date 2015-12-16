@@ -26,9 +26,10 @@ public class MySQLAccess {
     public MySQLAccess(String dataBaseName, String login, String
             password) throws SQLException, ClassNotFoundException {
     //  dataBaseName ="C:\\Users\\PC\\IdeaProjects\\DB_java\\src\\main\\resources\\Univer.sql";
-        this.dataBaseName = dataBaseName;
-        this.login = login;
-        this.password = password;
+
+       this.dataBaseName = dataBaseName;
+       this.login = login;
+       this.password = password;
         connectToDataBase();
     }
     //Функция для вывода данных каждой таблицы
@@ -71,6 +72,9 @@ public class MySQLAccess {
     }
     //Подключение к базе данных на mysql
     public void connectToDataBase() throws SQLException, ClassNotFoundException {
+        login = "root";
+        password = "0000";
+        dataBaseName = "univer";
         Class.forName("com.mysql.jdbc.Driver");
         connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dataBaseName + "?user=" + login + "&password=" + password);
         statement = connect.createStatement();

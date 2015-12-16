@@ -25,44 +25,6 @@ import java.util.LinkedList;
 
 public class Controller {
 
-  /*          someAction.setOnMouseClicked(
-                event -> {
-                    try {
-                        System.out.println("Mouse clicked triggered");
-                        getDBConnect();
-                        someAction.setText("YES :)");
-                        //System.out.println("Connection info: " + SQLITE);
-                        //connectionTest();
-                    } catch (Exception e) {
-                        someAction.setText("NOPE :(");
-                    }
-                    //someAction.setText("YES :)");
-                }
-        );
-    }
-
-    private Connection SQLITE = null;
-    private final String DATABASE = "H:/Univer.db";
-
-    private void getDBConnect() throws ClassNotFoundException, SQLException {
-        Class.forName("org.sqlite.JDBC");
-        System.out.println("Getting connect");
-        //вот тут он начинает не работать
-        SQLITE = DriverManager.getConnection("jdbc:sqlite:" + DATABASE);
-        System.out.println("qq");
-        System.out.println("SQLITE: " + SQLITE);
-        connectionTest();
-    }
-
-    private void connectionTest() throws SQLException {
-        java.sql.Statement stmt = SQLITE.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Student;");
-        System.out.println("Is result set null?: " + (rs == null));
-        while (rs.next()) {
-            System.out.println(rs.getString("Last_name"));
-        }
-    }*/
-
     public Group root;
     private VBox box;
     public String log;
@@ -93,8 +55,7 @@ public class Controller {
 
         final Label logn=new Label("For connecting to the database press the button ");
         final Button ok=new Button("Ok");
-        ok.setLayoutX(width / 2 - 80);
-        ok.setLayoutY(height / 2 - 80);
+
         box.setAlignment(Pos.TOP_CENTER);
         box.maxWidth(width);
         box.minWidth(width);
@@ -112,7 +73,21 @@ public class Controller {
                 db = new MySQLAccess("univer", log, psswrd);
                 logn.setVisible(false);
                 ok.setVisible(false);
+                /*final Button qq=new Button("qq");
+                ok.setLayoutX(width / 2 - 80);
+                ok.setLayoutY(height / 2 - 80);
+                box.setAlignment(Pos.TOP_CENTER);
+                box.maxWidth(width);
+                box.minWidth(width);
+                box.getChildren().addAll(qq);*/
                 OutputInformation();
+               /* final Button qq=new Button("qq");
+                ok.setLayoutX(width / 2 - 80);
+                ok.setLayoutY(height / 2 - 80);
+                box.setAlignment(Pos.TOP_CENTER);
+                box.maxWidth(width);
+                box.minWidth(width);
+                box.getChildren().addAll(qq);*/
 
             } catch (ClassNotFoundException e) {
                 System.out.println(e);
@@ -124,13 +99,16 @@ public class Controller {
     }
     private void OutputInformation() throws SQLException {
 
+        System.out.println("qq");
         HBox hbox=new HBox();
+
         Button add=new Button("Add");
         Button delete=new Button("Delete");
+       // Button change = new Button("Change");
+       // hbox.setAlignment(Pos.BASELINE_CENTER);
         hbox.getChildren().addAll(add,delete);
         hbox.setAlignment(Pos.BASELINE_CENTER);
-
-        final LinkedList<String> tables = db.getTables();
+       /* final LinkedList<String> tables = db.getTables();
 
         final LinkedList<String> columns = db.getColumns(tables.get(7));
 
@@ -178,7 +156,7 @@ public class Controller {
                     lbl.setText("Enter "+columns.get(i));
 
                     adding.add(txt);
-                    labels.add(lbl);
+                    labels.add(lbl);*/
 //                    box.getChildren().addAll(lbl,txt);
                 }
 
@@ -193,10 +171,10 @@ public class Controller {
 
                     }
                 });*/
-            }
-        });
+          //  }
+        //});
 
 
-    }
+   // }
 
 }
