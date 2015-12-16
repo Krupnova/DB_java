@@ -36,8 +36,8 @@ public class SetOfFunction {
         box=new VBox();
         this.doctorRequest=doctorRequest;
         this.registryRequest=registryRequest;
-        request=new Button("Посмотреть количество приемов");
-        makeRecord=new Button("Записать пациента на прием");
+        request=new Button("Посмотреть");
+        makeRecord=new Button("Записать");
 
     }*/
 

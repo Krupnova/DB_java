@@ -27,8 +27,8 @@ public class TableViewExample {
     private String log;
     private String psswrd;
     public MySQLAccess db;
-    private int width=500;
-    private int height=400;
+    private int width=350;
+    private int height=200;
 
     public TableViewExample(Stage primaryStage) throws Exception{
         root = new Group();
@@ -49,15 +49,15 @@ public class TableViewExample {
         Hbox.getChildren().add(box);
         Hbox.setLayoutX(width / 2 - Hbox.getWidth() / 2);
         root.getChildren().add(Hbox);
-        final Label logn=new Label("For connecting to the database press the button ");
-        final Button ok=new Button("Ok");
+        //final Label logn=new Label("For connecting to the database press the button ");
+        final Button ok=new Button("Connect to server");
 
         box.maxWidth(width);
         box.minWidth(width);
-        box.getChildren().addAll(logn, ok);
+        box.getChildren().addAll(ok);
 
-        Hbox.setLayoutX(width / 2 - 135);
-        Hbox.setLayoutY(height / 2 - 80);
+        Hbox.setLayoutX(width / 2 - 70);
+        Hbox.setLayoutY(height / 2 - 50);
 
         log = "root";
         psswrd = "password";
@@ -67,7 +67,7 @@ public class TableViewExample {
             try {
 
                 db = new MySQLAccess("univer", log, psswrd);
-                logn.setVisible(false);
+                //logn.setVisible(false);
                 ok.setVisible(false);
 
                 OutputInformation();

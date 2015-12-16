@@ -10,14 +10,14 @@ import java.util.LinkedList;
 /**
  * Created by Дарья on 01.11.2015.
  */
-public class Students_group {
+public class StudentsGroup {
     private StringProperty name_group;
     private StringProperty name_faculty;
     private IntegerProperty number_course;
     private StringProperty direction;
     private StringProperty name_cathedra;
 
-    public Students_group(String name_group, String name_faculty, int number_course, String direction, String name_cathedra){
+    public StudentsGroup(String name_group, String name_faculty, int number_course, String direction, String name_cathedra){
         this.name_group = new SimpleStringProperty(name_group);
         this.name_faculty = new SimpleStringProperty(name_faculty);
         this.number_course = new SimpleIntegerProperty(number_course);
@@ -25,7 +25,7 @@ public class Students_group {
         this.name_cathedra = new SimpleStringProperty(name_cathedra);
     }
 
-    public Students_group(LinkedList<String> fields){
+    public StudentsGroup(LinkedList<String> fields){
         this.name_group = new SimpleStringProperty(fields.get(0));
         this.name_faculty = new SimpleStringProperty(fields.get(1));
         this.number_course = new SimpleIntegerProperty(Integer.parseInt(fields.get(2)));

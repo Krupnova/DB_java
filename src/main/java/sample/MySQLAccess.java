@@ -19,25 +19,28 @@ public class MySQLAccess {
     private PreparedStatement insertSet;
     private Statement deleteSet;
 
-    public LinkedList<Object> objCollection=new LinkedList<Object>();   //14 коллекций таблиц
+    public LinkedList<Object> objCollection = new LinkedList<Object>();   //14 коллекций таблиц
 
     public Object object;
 
     public MySQLAccess(String dataBaseName, String login, String
             password) throws SQLException, ClassNotFoundException {
-    //  dataBaseName ="C:\\Users\\PC\\IdeaProjects\\DB_java\\src\\main\\resources\\Univer.sql";
+        //  dataBaseName ="C:\\Users\\PC\\IdeaProjects\\DB_java\\src\\main\\resources\\Univer.sql";
 
-       this.dataBaseName = dataBaseName;
-       this.login = login;
-       this.password = password;
+        this.dataBaseName = dataBaseName;
+        this.login = login;
+        this.password = password;
         connectToDataBase();
     }
+
     //Функция для вывода данных каждой таблицы
-    public LinkedList<Object> SetBranchCollection(String tableName, LinkedList<String> columns,LinkedList<Object> collection, Object obj) throws SQLException {
-        resultSet=null;
+    public LinkedList<Object> SetBranchCollection(String tableName, LinkedList<String> columns, LinkedList<Object> collection, Object obj) throws SQLException {
+        resultSet = null;
         statement = connect.createStatement();
-        resultSet = statement.executeQuery("select * from "+ dataBaseName +"."+tableName);
-        LinkedList<String> strings=new LinkedList<String>();
+        resultSet = statement.executeQuery("select * from " + dataBaseName + "." + tableName);
+        LinkedList<String> strings = new LinkedList<String>();
+
+        // cathedra; DROP DATABASE univer.cathedra
 
         if (tableName.equals("cathedra")) {
             resultSet = statement.executeQuery("SELECT * FROM univer.cathedra;");
@@ -46,30 +49,31 @@ public class MySQLAccess {
         }
         while (resultSet.next()) {
 
-            strings=new LinkedList<String>();
+            strings = new LinkedList<String>();
 
-            for (int i=0;i<columns.size();i++){
+            for (int i = 0; i < columns.size(); i++) {
                 String str = resultSet.getString(columns.get(i));
                 strings.add(str);
             }
             if (tableName.equals("cathedra"))
-                obj=new Cathedra(strings);
+                obj = new Cathedra(strings);
             else if (tableName.equals("education_building"))
-                obj=new Education_building(strings);
+                obj = new EducationBuilding(strings);
             else if (tableName.equals("faculty"))
-                obj=new Faculty(strings);
+                obj = new Faculty(strings);
             else if (tableName.equals("student"))
-                obj=new Student(strings);
+                obj = new Student(strings);
             else if (tableName.equals("students_group"))
-                obj=new Students_group(strings);
+                obj = new StudentsGroup(strings);
             else if (tableName.equals("teacher"))
-                obj=new Teacher(strings);
+                obj = new Teacher(strings);
 
 
             collection.add(obj);
         }
         return collection;
     }
+
     //Подключение к базе данных на mysql
     public void connectToDataBase() throws SQLException, ClassNotFoundException {
         login = "root";
@@ -94,11 +98,11 @@ public class MySQLAccess {
     public LinkedList<String> getColumns(String tableName) throws
             SQLException {
         LinkedList<String> columns = new LinkedList<String>();
-        ResultSet rs = statement.executeQuery("SELECT * FROM "+ dataBaseName +"."+ tableName);
+        ResultSet rs = statement.executeQuery("SELECT * FROM " + dataBaseName + "." + tableName);
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
         // Нумерация колонок начинается с 1
-        for (int i = 1; i < columnCount + 1; i++ ) {
+        for (int i = 1; i < columnCount + 1; i++) {
             columns.add(rsmd.getColumnName(i));
         }
         return columns;
@@ -107,14 +111,14 @@ public class MySQLAccess {
     //Добавление новой записи в таблицу
     public void Adding(String tableName, LinkedList<Object> insertData) throws SQLException {
 
-        String first="insert into "+ dataBaseName +"."+tableName+" values(";
-        StringBuffer insert=new StringBuffer();
-        StringBuffer data=new StringBuffer();
+        String first = "insert into " + dataBaseName + "." + tableName + " values(";
+        StringBuffer insert = new StringBuffer();
+        StringBuffer data = new StringBuffer();
 
-        for (int i=0;i<insertData.size();i++){
+        for (int i = 0; i < insertData.size(); i++) {
             data.append("'");
             data.append(insertData.get(i));
-            if (i!=insertData.size()-1)
+            if (i != insertData.size() - 1)
                 data.append("',");
             else data.append("')");
         }
@@ -125,26 +129,26 @@ public class MySQLAccess {
         insertSet.executeUpdate(insert.toString());
     }
 
-    public void Changing(String tableName,LinkedList<Object> insertData, LinkedList<String> fields) throws SQLException {
+    public void Changing(String tableName, LinkedList<Object> insertData, LinkedList<String> fields) throws SQLException {
 //   update кабинет set специализация='Терапевт' where код=5;
-        String first="update "+ dataBaseName +"."+tableName+" set ";
-        boolean flag=false;
-        StringBuffer update=new StringBuffer();
-        StringBuffer data=new StringBuffer();
-        for (int i=1;i<insertData.size();i++){
-            if (insertData.get(i).equals("")){
-                flag=true;
+        String first = "update " + dataBaseName + "." + tableName + " set ";
+        boolean flag = false;
+        StringBuffer update = new StringBuffer();
+        StringBuffer data = new StringBuffer();
+        for (int i = 1; i < insertData.size(); i++) {
+            if (insertData.get(i).equals("")) {
+                flag = true;
                 continue;
-            }else flag=false;
+            } else flag = false;
 
             data.append(fields.get(i));
             data.append("='");
             data.append(insertData.get(i));
-            if (i!=insertData.size()-1)
+            if (i != insertData.size() - 1)
                 data.append("',");
             else data.append("'");
         }
-        if (flag==false) {
+        if (flag == false) {
             if (data.charAt(data.length() - 1) == ',')
                 data.deleteCharAt(data.length() - 1);
             String end = " where " + fields.get(0) + "=" + insertData.get(0);
@@ -156,12 +160,12 @@ public class MySQLAccess {
             updateSet.executeUpdate(update.toString());
         }
     }
-    public void Del(String tableName, int number)throws SQLException{
-        deleteSet=connect.createStatement();
-        deleteSet.executeUpdate("delete from "+ dataBaseName +"."+tableName+" where код="+number);
+
+    public void Del(String tableName, int number) throws SQLException {
+        deleteSet = connect.createStatement();
+        deleteSet.executeUpdate("delete from " + dataBaseName + "." + tableName + " where код=" + number);
 
     }
-
 
 
 }

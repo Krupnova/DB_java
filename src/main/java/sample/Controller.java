@@ -30,10 +30,10 @@ public class Controller {
     public String log;
     public String psswrd;
     public MySQLAccess db;
-    private int width=500;
-    private int height=400;
+    private int width=350;
+    private int height=200;
 
-    public Controller(Stage primaryStage) throws Exception{
+    /*public Controller(Stage primaryStage) throws Exception{
         root = new Group();
         primaryStage.setTitle("University");
         primaryStage.setScene(new Scene(root, width, height));
@@ -43,7 +43,7 @@ public class Controller {
         primaryStage.setMaxHeight(height);
         primaryStage.show();
         CreateForm();
-    }
+    }*/
 
     private void CreateForm() throws SQLException {
         box=new VBox();
@@ -52,14 +52,14 @@ public class Controller {
         Hbox.getChildren().add(box);
         Hbox.setLayoutX(width / 2 - Hbox.getWidth() / 2);
         root.getChildren().add(Hbox);
+        root.getChildren().add(box);
 
-        final Label logn=new Label("For connecting to the database press the button ");
-        final Button ok=new Button("Ok");
+        //final Label logn=new Label("For connecting to the database press the button ");
+        final Button ok=new Button("Connect to server");
 
         box.setAlignment(Pos.TOP_CENTER);
         box.maxWidth(width);
         box.minWidth(width);
-        box.getChildren().addAll(logn, ok);
 
         log = "root";
         psswrd = "0000";
@@ -67,11 +67,14 @@ public class Controller {
         Hbox.setLayoutX(width / 2 - 135);
         Hbox.setLayoutY(height / 2 - 80);
 
-        ok.setOnAction(event -> {
+        final Button ok2=new Button("Connect to server");
+        ok2.setOnAction(event -> System.out.println("Button was pressed."));
 
+        ok.setOnAction(event -> {
             try {
+                System.out.println("Button was pressed.");
                 db = new MySQLAccess("univer", log, psswrd);
-                logn.setVisible(false);
+                //logn.setVisible(false);
                 ok.setVisible(false);
                 /*final Button qq=new Button("qq");
                 ok.setLayoutX(width / 2 - 80);
@@ -88,7 +91,6 @@ public class Controller {
                 box.maxWidth(width);
                 box.minWidth(width);
                 box.getChildren().addAll(qq);*/
-
             } catch (ClassNotFoundException e) {
                 System.out.println(e);
             } catch (SQLException e) {
@@ -96,10 +98,14 @@ public class Controller {
             }
         });
 
+        box.getChildren().add(ok2);
+
     }
+
     private void OutputInformation() throws SQLException {
 
         System.out.println("qq");
+
         HBox hbox=new HBox();
 
         Button add=new Button("Add");
