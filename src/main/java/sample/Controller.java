@@ -99,6 +99,7 @@ public class Controller {
     }
     private void OutputInformation() throws SQLException {
 
+        System.out.println("qq");
         HBox hbox=new HBox();
 
         Button add=new Button("Add");
