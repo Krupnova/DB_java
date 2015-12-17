@@ -96,7 +96,7 @@ public class TableViewExample {
     }
 
        /* final LinkedList<String> tables = db.getTables();
-
+// так работать с таблицей
         final TableView tableView=new TableView();
 
         final ChoiceBox cb = new ChoiceBox();

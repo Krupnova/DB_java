@@ -24,37 +24,40 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <Button fx:id="testButton" layoutX="82.0" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Connection" />
-                  <Label layoutX="32.0" layoutY="29.0" prefHeight="77.0" prefWidth="230.0" text="Hello! Press button &quot;Connection&quot; &#10;for connecting with database" textAlignment="CENTER">
+                  <Label layoutX="32.0" layoutY="29.0" prefHeight="77.0" prefWidth="230.0" text="Hello! Press button &quot;Connection&quot; &#10;for connecting to database" textAlignment="CENTER">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="cathedra_rb" layoutX="79.0" layoutY="264.0" mnemonicParsing="false" text="Cathedra">
+                  <RadioButton id="RB_cathedra" fx:id="cathedra_rb" layoutX="79.0" layoutY="264.0" mnemonicParsing="false" text="Cathedra">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="TG1" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton id="RB_eb" fx:id="EB_rb" layoutX="79.0" layoutY="299.0" mnemonicParsing="false" text="Education Building" toggleGroup="$TG1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="EB_rb" layoutX="79.0" layoutY="299.0" mnemonicParsing="false" text="EducationBuilding">
+                  <RadioButton id="RB_faculty" fx:id="faculty_rb" layoutX="79.0" layoutY="334.0" mnemonicParsing="false" text="Faculty" toggleGroup="$TG1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="faculty_rb" layoutX="79.0" layoutY="334.0" mnemonicParsing="false" text="Faculty">
+                  <RadioButton id="RB_student" fx:id="student_rb" layoutX="79.0" layoutY="369.0" mnemonicParsing="false" text="Student" toggleGroup="$TG1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="student_rb" layoutX="79.0" layoutY="369.0" mnemonicParsing="false" text="Student">
+                  <RadioButton id="RB_studgr" fx:id="studentsGroup_rb" layoutX="79.0" layoutY="404.0" mnemonicParsing="false" text="Students Group" toggleGroup="$TG1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="studentsGroup_rb" layoutX="79.0" layoutY="404.0" mnemonicParsing="false" text="StudentsGroup">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="teacher_rb" layoutX="79.0" layoutY="439.0" mnemonicParsing="false" text="Teacher">
+                  <RadioButton id="RB_teacher" fx:id="teacher_rb" layoutX="79.0" layoutY="439.0" mnemonicParsing="false" text="Teacher" toggleGroup="$TG1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -71,11 +74,16 @@
                <children>
                   <TabPane prefHeight="598.0" prefWidth="698.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Add">
+                        <Tab id="tab_view" fx:id="tab_view" text="View">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                      <Tab id="tab_add" fx:id="tab_add" text="Add">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Group fx:id="Cathedra_add" layoutX="-29.0" layoutY="-10.0">
+                                    <Group id="GR_cathedra" fx:id="Cathedra_add" layoutX="-29.0" layoutY="-10.0" visible="false">
                                        <children>
                                           <Label layoutX="91.0" layoutY="70.0" text="For cathedra">
                                              <font>
@@ -104,11 +112,11 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="headDepartment" layoutX="278.0" layoutY="147.0" />
-                                          <TextField fx:id="numberEDCath" layoutX="278.0" layoutY="227.0" />
+                                          <TextField fx:id="numberEDCath" layoutX="278.0" layoutY="227.0" visible="false" />
                                           <TextField fx:id="phoneDepartment" layoutX="278.0" layoutY="187.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="ED_add" layoutX="-40.0" layoutY="-4.0">
+                                    <Group id="GR_building" fx:id="ED_add" layoutX="-40.0" layoutY="-4.0" visible="false">
                                        <children>
                                           <Label layoutX="70.0" layoutY="185.0" text="Phone dispatcher">
                                              <font>
@@ -135,7 +143,7 @@
                                           <TextField fx:id="phoneDisp" layoutX="290.0" layoutY="182.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Faculty_add" layoutX="-36.0" layoutY="-39.0">
+                                    <Group id="GR_faculty" fx:id="Faculty_add" layoutX="-36.0" layoutY="-39.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For faculty">
                                              <font>
@@ -168,7 +176,7 @@
                                           <TextField fx:id="nameFacultyFac" layoutX="300.0" layoutY="137.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Student_add" layoutX="-37.0" layoutY="-40.0">
+                                    <Group id="GR_student" fx:id="Student_add" layoutX="-37.0" layoutY="-40.0" visible="false">
                                        <children>
                                           <TextField fx:id="nameGroupStu" layoutX="250.0" layoutY="257.0" />
                                           <TextField fx:id="yearBirth" layoutX="250.0" layoutY="217.0" />
@@ -201,7 +209,7 @@
                                           <TextField fx:id="numberRecordBook" layoutX="250.0" layoutY="137.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="StudentsGroup_add" layoutX="-36.0" layoutY="-40.0">
+                                    <Group id="GR_group" fx:id="StudentsGroup_add" layoutX="-36.0" layoutY="-40.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For students group">
                                              <font>
@@ -240,7 +248,7 @@
                                           <TextField fx:id="nameCathedraStuGro" layoutX="250.0" layoutY="298.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Teacher_add" layoutX="-36.0" layoutY="-40.0">
+                                    <Group id="GR_teacher" fx:id="Teacher_add" layoutX="-36.0" layoutY="-40.0" visible="false">
                                        <children>
                                           <TextField fx:id="nameCathedraTeach" layoutX="250.0" layoutY="298.0" />
                                           <Label layoutX="100.0" layoutY="100.0" text="For teacher">
@@ -291,8 +299,8 @@
                                           <TextField fx:id="addressTeach" layoutX="250.0" layoutY="378.0" />
                                        </children>
                                     </Group>
-                                    <Button fx:id="add" layoutX="148.0" layoutY="409.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Add" />
-                                    <Label layoutX="95.0" layoutY="21.0" text="Choose the table for add data">
+                                    <Button fx:id="add" layoutX="145.0" layoutY="400.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Add" />
+                                    <Label layoutX="95.0" layoutY="20.0" text="Select the table for add data">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -301,11 +309,11 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Delete">
+                      <Tab id="tab_del" fx:id="tab_del" text="Delete">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <AnchorPane fx:id="pane_del" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" visible="false">
                                  <children>
-                                    <Group fx:id="Techer_del" layoutX="-32.0" layoutY="81.0">
+                                    <Group id="GR_teacherD" fx:id="Techer_del" layoutX="-32.0" layoutY="81.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For teacher">
                                              <font>
@@ -320,7 +328,7 @@
                                           <TextField fx:id="personalNumberTeach_del" layoutX="250.0" layoutY="138.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Student_del" layoutX="-31.0" layoutY="81.0">
+                                    <Group id="GR_studentD" fx:id="Student_del" layoutX="-31.0" layoutY="81.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For student">
                                              <font>
@@ -335,7 +343,7 @@
                                           <TextField fx:id="numberRecordBook_del" layoutX="208.0" layoutY="137.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="StudentsGroup_del" layoutX="-32.0" layoutY="82.0">
+                                    <Group id="GR_groupD" fx:id="StudentsGroup_del" layoutX="-32.0" layoutY="82.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For students group">
                                              <font>
@@ -350,7 +358,7 @@
                                           <TextField fx:id="nameGroup_del" layoutX="206.0" layoutY="138.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Cathedra_del" layoutX="-23.0" layoutY="110.0">
+                                    <Group id="GR_cathedraD" fx:id="Cathedra_del" layoutX="-23.0" layoutY="110.0" visible="false">
                                        <children>
                                           <Label layoutX="91.0" layoutY="70.0" text="For cathedra">
                                              <font>
@@ -365,7 +373,7 @@
                                           </Label>
                                        </children>
                                     </Group>
-                                    <Group fx:id="ED_del" layoutX="-35.0" layoutY="117.0">
+                                    <Group id="GR_buildingD" fx:id="ED_del" layoutX="-35.0" layoutY="117.0" visible="false">
                                        <children>
                                           <Label layoutX="103.0" layoutY="65.0" text="For education building">
                                              <font>
@@ -380,7 +388,7 @@
                                           <TextField fx:id="numberED_del" layoutX="290.0" layoutY="102.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Faculty_del" layoutX="-32.0" layoutY="81.0">
+                                    <Group id="GR_facultyD" fx:id="Faculty_del" layoutX="-32.0" layoutY="81.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For faculty">
                                              <font>
@@ -395,8 +403,8 @@
                                           <TextField fx:id="nameFaculty_del" layoutX="208.0" layoutY="137.0" />
                                        </children>
                                     </Group>
-                                    <Button fx:id="delete" layoutX="172.0" layoutY="303.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Delete" />
-                                    <Label layoutX="72.0" layoutY="102.0" text="Choose the table for delete data">
+                                    <Button fx:id="delete" layoutX="145.0" layoutY="400.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Delete" />
+                                    <Label layoutX="95.0" layoutY="20.0" text="Select the table for delete data">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -405,12 +413,12 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                        <Tab text="Update">
+                        <Tab id="tab_upd" fx:id="tab_upd" text="Update">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="update" layoutX="170.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Update" />
-                                    <Group fx:id="Cathedra_update">
+                                    <Button fx:id="update" layoutX="145.0" layoutY="400.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Update" />
+                                    <Group id="GR_cathedraU" fx:id="Cathedra_update" visible="false">
                                        <children>
                                           <Label layoutX="91.0" layoutY="70.0" text="For cathedra">
                                              <font>
@@ -443,7 +451,7 @@
                                           <TextField fx:id="phoneDepartment_upd" layoutX="278.0" layoutY="187.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="ED_update" layoutX="-12.0" layoutY="5.0">
+                                    <Group id="GR_buildingU" fx:id="ED_update" layoutX="-12.0" layoutY="5.0" visible="false">
                                        <children>
                                           <Label layoutX="70.0" layoutY="185.0" text="Phone dispatcher">
                                              <font>
@@ -470,7 +478,7 @@
                                           <TextField fx:id="phoneDisp_upd" layoutX="290.0" layoutY="182.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Faculty_update" layoutX="-9.0" layoutY="-30.0">
+                                    <Group id="GR_facultyU" fx:id="Faculty_update" layoutX="-9.0" layoutY="-30.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For faculty">
                                              <font>
@@ -503,7 +511,7 @@
                                           <TextField fx:id="nameFacultyFac_upd" layoutX="300.0" layoutY="137.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Student_update" layoutX="-8.0" layoutY="-30.0">
+                                    <Group id="GR_studentU" fx:id="Student_update" layoutX="-8.0" layoutY="-30.0" visible="false">
                                        <children>
                                           <TextField fx:id="nameGroupStu_upd" layoutX="250.0" layoutY="257.0" />
                                           <TextField fx:id="yearBirth_upd" layoutX="250.0" layoutY="217.0" />
@@ -536,7 +544,7 @@
                                           <TextField fx:id="numberRecordBook_upd" layoutX="250.0" layoutY="137.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="StudentsGroup_update" layoutX="-9.0" layoutY="-31.0">
+                                    <Group id="GR_groupU" fx:id="StudentsGroup_update" layoutX="-9.0" layoutY="-31.0" visible="false">
                                        <children>
                                           <Label layoutX="100.0" layoutY="100.0" text="For students group">
                                              <font>
@@ -575,7 +583,7 @@
                                           <TextField fx:id="nameCathedraStuGro_upd" layoutX="250.0" layoutY="298.0" />
                                        </children>
                                     </Group>
-                                    <Group fx:id="Teacher_update" layoutX="-9.0" layoutY="-30.0">
+                                    <Group id="GR_teacherU" fx:id="Teacher_update" layoutX="-9.0" layoutY="-30.0" visible="false">
                                        <children>
                                           <TextField fx:id="nameCathedraTeach_upd" layoutX="250.0" layoutY="298.0" />
                                           <Label layoutX="100.0" layoutY="100.0" text="For teacher">
@@ -626,7 +634,7 @@
                                           <TextField fx:id="addressTeach_upd" layoutX="250.0" layoutY="378.0" />
                                        </children>
                                     </Group>
-                                    <Label layoutX="92.0" layoutY="28.0" text="Choose the table for update data">
+                                    <Label layoutX="95.0" layoutY="20.0" text="Select the table for update data">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

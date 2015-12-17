@@ -1,13 +1,17 @@
 package sample;
 
+import java.awt.*;
 import java.net.URL;
+import java.security.acl.Group;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ControllerFX {
@@ -18,6 +22,47 @@ public class ControllerFX {
     private final String DB_SCHEMA_NAME = "univer";
     private Connection DB_CONNECTION = null;
 
+    @FXML
+    private RadioButton faculty_rb;
+
+    @FXML
+    private ToggleGroup TG1;
+    @FXML
+    private Button add;
+    @FXML
+    private RadioButton cathedra_rb;
+    @FXML
+    private RadioButton student_rb;
+    @FXML
+    private Button update;
+
+    @FXML
+    private Button delete;
+
+
+    @FXML
+    private RadioButton studentsGroup_rb;
+
+
+    @FXML
+    private RadioButton teacher_rb;
+
+
+    @FXML
+    private RadioButton EB_rb;
+
+
+
+    @FXML
+    private Tab tab_del;
+    @FXML
+    private Tab tab_upd;
+    @FXML
+    private Tab tab_add;
+    @FXML
+    private Tab tab_view;
+    @FXML
+    private AnchorPane pane_del;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -32,48 +77,75 @@ public class ControllerFX {
     void initialize() {
         assert testButton != null : "fx:id=\"testButton\" was not injected: check your FXML file 'sample.fxml'.";
 
-        testButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Button was pressed!");
+        testButton.setOnAction(event -> {
+            System.out.println("Button was pressed!");
 
-                try {
-                    DB_CONNECTION = getConnection();
+            try {
+                DB_CONNECTION = getConnection();
 
-                    if (DB_CONNECTION != null)
-                        System.out.println("Got a connection!");
+                if (DB_CONNECTION != null)
+                    System.out.println("Got a connection!");
 
-                    System.out.println();
-                    ResultSet test = getResultFromDB(
-                            SQLQueryType.SELECT,
-                            "cathedra"
-                    );
+                System.out.println();
+                ResultSet test = getResultFromDB(
+                        SQLQueryType.SELECT,
+                        "cathedra"
+                );
 
-                    while (test.next()) {
-                        System.out.println(test.getString(1));
-                    }
-
-                    ResultSet test2 = getResultFromDB(
-                            SQLQueryType.SELECT,
-                            "cathedra",
-                            "head_of_department",
-                            getSQLString("Vahidov")
-                    );
-
-                    while (test2.next()) {
-                        System.out.println(test2.getString(2));
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
+                while (test.next()) {
+                    System.out.println(test.getString(1));
                 }
+
+                ResultSet test2 = getResultFromDB(
+                        SQLQueryType.SELECT,
+                        "cathedra",
+                        "head_of_department",
+                        getSQLString("Vahidov")
+                );
+
+                while (test2.next()) {
+                    System.out.println(test2.getString(2));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            selectTable.setOnAction((ActionEvent) -> {
+                System.out.println("Table selected");
+                //pane_del.setVisible(true);
+
+                /*try{
+
+
+                }*/
+
+            });
         });
     }
+    @FXML
+    private Button selectTable;
 
     public void setStage(Stage source) {
         this.guiRoot = source;
     }
+    /*private void SelectTable (SQLTable rbutton, SQLQueryType tab){
+        reg.setVisible(true);
+
+        switch(tab){
+            case ADD:{
+                switch(rbutton){
+                    case CATHEDRA:{
+                        reg.setVisible(true);
+                    }
+                }
+
+                break;
+            }
+
+        }
+
+    }*/
 
     /*
     * “ранзакци€ - это комплексна€ операци€, состо€ща€ из группы операций, которые выполн€ютс€ либо все,
