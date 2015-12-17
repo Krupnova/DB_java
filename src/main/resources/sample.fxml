@@ -10,7 +10,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerFX">
    <columnConstraints>
       <ColumnConstraints />
@@ -24,10 +23,621 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="testButton" layoutX="53.0" layoutY="64.0" mnemonicParsing="false" text="TEST" />
+                  <Button fx:id="testButton" layoutX="82.0" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Connection" />
+                  <Label layoutX="32.0" layoutY="29.0" prefHeight="77.0" prefWidth="230.0" text="Hello! Press button &quot;Connection&quot; &#10;for connecting with database" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="cathedra_rb" layoutX="79.0" layoutY="264.0" mnemonicParsing="false" text="Cathedra">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="EB_rb" layoutX="79.0" layoutY="299.0" mnemonicParsing="false" text="EducationBuilding">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="faculty_rb" layoutX="79.0" layoutY="334.0" mnemonicParsing="false" text="Faculty">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="student_rb" layoutX="79.0" layoutY="369.0" mnemonicParsing="false" text="Student">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="studentsGroup_rb" layoutX="79.0" layoutY="404.0" mnemonicParsing="false" text="StudentsGroup">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="teacher_rb" layoutX="79.0" layoutY="439.0" mnemonicParsing="false" text="Teacher">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <Button fx:id="selectTable" layoutX="82.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Select table" />
+                  <Label layoutX="56.0" layoutY="201.0" text="For further work &#10;with a database select table" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1000.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="500.0">
+               <children>
+                  <TabPane prefHeight="598.0" prefWidth="698.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Add">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Group fx:id="Cathedra_add" layoutX="-29.0" layoutY="-10.0">
+                                       <children>
+                                          <Label layoutX="91.0" layoutY="70.0" text="For cathedra">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="58.0" layoutY="230.0" prefHeight="24.0" prefWidth="206.0" text="Number of the education building">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="58.0" layoutY="150.0" text="Head of department">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="58.0" layoutY="190.0" text="Phone of the department">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nameCathedraCath" layoutX="278.0" layoutY="107.0" />
+                                          <Label layoutX="58.0" layoutY="110.0" text="Name of the cathedra">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="headDepartment" layoutX="278.0" layoutY="147.0" />
+                                          <TextField fx:id="numberEDCath" layoutX="278.0" layoutY="227.0" />
+                                          <TextField fx:id="phoneDepartment" layoutX="278.0" layoutY="187.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="ED_add" layoutX="-40.0" layoutY="-4.0">
+                                       <children>
+                                          <Label layoutX="70.0" layoutY="185.0" text="Phone dispatcher">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="103.0" layoutY="65.0" text="For education building">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="70.0" layoutY="105.0" prefHeight="24.0" prefWidth="194.0" text="Number of the eduction building">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="70.0" layoutY="145.0" text="Address">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="NumberED" layoutX="290.0" layoutY="102.0" />
+                                          <TextField fx:id="addressEB" layoutX="290.0" layoutY="142.0" />
+                                          <TextField fx:id="phoneDisp" layoutX="290.0" layoutY="182.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Faculty_add" layoutX="-36.0" layoutY="-39.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For faculty">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Name of the faculty">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="63.0" layoutY="180.0" text="Dean">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="63.0" layoutY="260.0" text="Number of students at the faculty">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="63.0" layoutY="220.0" text="Phone dean">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numberStudents" layoutX="300.0" layoutY="257.0" />
+                                          <TextField fx:id="phoneDean" layoutX="300.0" layoutY="217.0" />
+                                          <TextField fx:id="dean" layoutX="300.0" layoutY="177.0" />
+                                          <TextField fx:id="nameFacultyFac" layoutX="300.0" layoutY="137.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Student_add" layoutX="-37.0" layoutY="-40.0">
+                                       <children>
+                                          <TextField fx:id="nameGroupStu" layoutX="250.0" layoutY="257.0" />
+                                          <TextField fx:id="yearBirth" layoutX="250.0" layoutY="217.0" />
+                                          <Label layoutX="100.0" layoutY="100.0" text="For student">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Number record book">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="180.0" text="Last name">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="260.0" text="Name of the group">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="220.0" text="Year of birth">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="lastNameStudent" layoutX="250.0" layoutY="177.0" />
+                                          <TextField fx:id="numberRecordBook" layoutX="250.0" layoutY="137.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="StudentsGroup_add" layoutX="-36.0" layoutY="-40.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For students group">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Name of the group">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="180.0" text="Name of the faculty">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="220.0" text="Number of course">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="260.0" text="Direction">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="300.0" text="Name of cathedra">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nameGroupStuGrou" layoutX="250.0" layoutY="138.0" />
+                                          <TextField fx:id="nameFacultuStuGro" layoutX="250.0" layoutY="178.0" />
+                                          <TextField fx:id="nameCourse" layoutX="250.0" layoutY="218.0" />
+                                          <TextField fx:id="direction" layoutX="250.0" layoutY="258.0" />
+                                          <TextField fx:id="nameCathedraStuGro" layoutX="250.0" layoutY="298.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Teacher_add" layoutX="-36.0" layoutY="-40.0">
+                                       <children>
+                                          <TextField fx:id="nameCathedraTeach" layoutX="250.0" layoutY="298.0" />
+                                          <Label layoutX="100.0" layoutY="100.0" text="For teacher">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Personal number teacher">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="180.0" text="Last name">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="300.0" text="Name of the cathedra">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="340.0" text="Phone">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="380.0" text="Address">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="260.0" text="Degree">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="220.0" text="Job tittle">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="personalNumberTeacher" layoutX="250.0" layoutY="138.0" />
+                                          <TextField fx:id="lastNameTeacher" layoutX="250.0" layoutY="178.0" />
+                                          <TextField fx:id="jobTittle" layoutX="250.0" layoutY="218.0" />
+                                          <TextField fx:id="degree" layoutX="250.0" layoutY="258.0" />
+                                          <TextField fx:id="phone" layoutX="250.0" layoutY="338.0" />
+                                          <TextField fx:id="addressTeach" layoutX="250.0" layoutY="378.0" />
+                                       </children>
+                                    </Group>
+                                    <Button fx:id="add" layoutX="148.0" layoutY="409.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Add" />
+                                    <Label layoutX="95.0" layoutY="21.0" text="Choose the table for add data">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Delete">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Group fx:id="Techer_del" layoutX="-32.0" layoutY="81.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For teacher">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Personal number teacher">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="personalNumberTeach_del" layoutX="250.0" layoutY="138.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Student_del" layoutX="-31.0" layoutY="81.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For student">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Number record book">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numberRecordBook_del" layoutX="208.0" layoutY="137.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="StudentsGroup_del" layoutX="-32.0" layoutY="82.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For students group">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Name of the group">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nameGroup_del" layoutX="206.0" layoutY="138.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Cathedra_del" layoutX="-23.0" layoutY="110.0">
+                                       <children>
+                                          <Label layoutX="91.0" layoutY="70.0" text="For cathedra">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nameCathedra_del" layoutX="204.0" layoutY="106.0" />
+                                          <Label layoutX="58.0" layoutY="110.0" text="Name of the cathedra">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="ED_del" layoutX="-35.0" layoutY="117.0">
+                                       <children>
+                                          <Label layoutX="103.0" layoutY="65.0" text="For education building">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="70.0" layoutY="105.0" prefHeight="24.0" prefWidth="194.0" text="Number of the eduction building">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numberED_del" layoutX="290.0" layoutY="102.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Faculty_del" layoutX="-32.0" layoutY="81.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For faculty">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Name of the faculty">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nameFaculty_del" layoutX="208.0" layoutY="137.0" />
+                                       </children>
+                                    </Group>
+                                    <Button fx:id="delete" layoutX="172.0" layoutY="303.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Delete" />
+                                    <Label layoutX="72.0" layoutY="102.0" text="Choose the table for delete data">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Update">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="update" layoutX="170.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Update" />
+                                    <Group fx:id="Cathedra_update">
+                                       <children>
+                                          <Label layoutX="91.0" layoutY="70.0" text="For cathedra">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="58.0" layoutY="230.0" prefHeight="24.0" prefWidth="206.0" text="Number of the education building">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="58.0" layoutY="150.0" text="Head of department">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="58.0" layoutY="190.0" text="Phone of the department">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nameCathedraCath_upd" layoutX="278.0" layoutY="107.0" />
+                                          <Label layoutX="58.0" layoutY="110.0" text="Name of the cathedra">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="headDepartment_upd" layoutX="278.0" layoutY="147.0" />
+                                          <TextField fx:id="numberEDCath_upd" layoutX="278.0" layoutY="227.0" />
+                                          <TextField fx:id="phoneDepartment_upd" layoutX="278.0" layoutY="187.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="ED_update" layoutX="-12.0" layoutY="5.0">
+                                       <children>
+                                          <Label layoutX="70.0" layoutY="185.0" text="Phone dispatcher">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="103.0" layoutY="65.0" text="For education building">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="70.0" layoutY="105.0" prefHeight="24.0" prefWidth="194.0" text="Number of the eduction building">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="70.0" layoutY="145.0" text="Address">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="NumberED_upd" layoutX="290.0" layoutY="102.0" />
+                                          <TextField fx:id="addressEB_upd" layoutX="290.0" layoutY="142.0" />
+                                          <TextField fx:id="phoneDisp_upd" layoutX="290.0" layoutY="182.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Faculty_update" layoutX="-9.0" layoutY="-30.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For faculty">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Name of the faculty">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="63.0" layoutY="180.0" text="Dean">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="63.0" layoutY="260.0" text="Number of students at the faculty">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="63.0" layoutY="220.0" text="Phone dean">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numberStudents_upd" layoutX="300.0" layoutY="257.0" />
+                                          <TextField fx:id="phoneDean_upd" layoutX="300.0" layoutY="217.0" />
+                                          <TextField fx:id="dean_upd" layoutX="300.0" layoutY="177.0" />
+                                          <TextField fx:id="nameFacultyFac_upd" layoutX="300.0" layoutY="137.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Student_update" layoutX="-8.0" layoutY="-30.0">
+                                       <children>
+                                          <TextField fx:id="nameGroupStu_upd" layoutX="250.0" layoutY="257.0" />
+                                          <TextField fx:id="yearBirth_upd" layoutX="250.0" layoutY="217.0" />
+                                          <Label layoutX="100.0" layoutY="100.0" text="For student">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Number record book">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="180.0" text="Last name">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="260.0" text="Name of the group">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="220.0" text="Year of birth">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="lastNameStudent_upd" layoutX="250.0" layoutY="177.0" />
+                                          <TextField fx:id="numberRecordBook_upd" layoutX="250.0" layoutY="137.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="StudentsGroup_update" layoutX="-9.0" layoutY="-31.0">
+                                       <children>
+                                          <Label layoutX="100.0" layoutY="100.0" text="For students group">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Name of the group">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="180.0" text="Name of the faculty">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="220.0" text="Number of course">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="260.0" text="Direction">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="300.0" text="Name of cathedra">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nameGroupStuGro_upd" layoutX="250.0" layoutY="138.0" />
+                                          <TextField fx:id="nameFacultuStuGro_upd" layoutX="250.0" layoutY="178.0" />
+                                          <TextField fx:id="nameCourse_upd" layoutX="250.0" layoutY="218.0" />
+                                          <TextField fx:id="direction_upd" layoutX="250.0" layoutY="258.0" />
+                                          <TextField fx:id="nameCathedraStuGro_upd" layoutX="250.0" layoutY="298.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="Teacher_update" layoutX="-9.0" layoutY="-30.0">
+                                       <children>
+                                          <TextField fx:id="nameCathedraTeach_upd" layoutX="250.0" layoutY="298.0" />
+                                          <Label layoutX="100.0" layoutY="100.0" text="For teacher">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="140.0" text="Personal number teacher">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="180.0" text="Last name">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="300.0" text="Name of the cathedra">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="340.0" text="Phone">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="380.0" text="Address">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="260.0" text="Degree">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="67.0" layoutY="220.0" text="Job tittle">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="personalNumberTeacher_upd" layoutX="250.0" layoutY="138.0" />
+                                          <TextField fx:id="lastNameTeacher_upd" layoutX="250.0" layoutY="178.0" />
+                                          <TextField fx:id="jobTittle_upd" layoutX="250.0" layoutY="218.0" />
+                                          <TextField fx:id="degree_upd" layoutX="250.0" layoutY="258.0" />
+                                          <TextField fx:id="phone_upd" layoutX="250.0" layoutY="338.0" />
+                                          <TextField fx:id="addressTeach_upd" layoutX="250.0" layoutY="378.0" />
+                                       </children>
+                                    </Group>
+                                    <Label layoutX="92.0" layoutY="28.0" text="Choose the table for update data">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>
