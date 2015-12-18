@@ -68,6 +68,31 @@ public class ControllerFX {
     private Tab tab_view;
     @FXML
     private AnchorPane pane_del;
+    @FXML
+    private AnchorPane EDDel;
+    @FXML
+    private AnchorPane FacultyDel;
+    @FXML
+    private AnchorPane TeacherDel;
+    @FXML
+    private AnchorPane StudentsGroupDel;
+    @FXML
+    private AnchorPane StudentUpdate;
+    @FXML
+    private AnchorPane FacultyUpdate;
+    @FXML
+    private AnchorPane CathedraDel;
+    @FXML
+    private AnchorPane EDUpdate;
+    @FXML
+    private AnchorPane StudentsGroupUpdate;
+    @FXML
+    private AnchorPane TeacherUpdate;
+    @FXML
+    private AnchorPane StudentDel;
+    @FXML
+    private AnchorPane CathedraUpdate;
+
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -123,7 +148,19 @@ public class ControllerFX {
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(true);
 
-                //тут еще будут все анкор пейны
+                EDDel.setVisible(false);
+                StudentDel.setVisible(false);
+                StudentsGroupDel.setVisible(false);
+                TeacherDel.setVisible(false);
+                FacultyDel.setVisible(false);
+                CathedraDel.setVisible(true);
+
+                EDUpdate.setVisible(false);
+                StudentUpdate.setVisible(false);
+                StudentsGroupUpdate.setVisible(false);
+                TeacherUpdate.setVisible(false);
+                FacultyUpdate.setVisible(false);
+                CathedraUpdate.setVisible(true);
 
                 //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса для опред талицы
                 add.setOnAction(event2 -> {
@@ -145,6 +182,21 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+
+                EDDel.setVisible(false);
+                StudentDel.setVisible(true);
+                StudentsGroupDel.setVisible(false);
+                TeacherDel.setVisible(false);
+                FacultyDel.setVisible(false);
+                CathedraDel.setVisible(false);
+
+                EDUpdate.setVisible(false);
+                StudentUpdate.setVisible(true);
+                StudentsGroupUpdate.setVisible(false);
+                TeacherUpdate.setVisible(false);
+                FacultyUpdate.setVisible(false);
+                CathedraUpdate.setVisible(false);
+
                 add.setOnAction(event2 -> {
                     AddToDatabase(SQLTable.STUDENT, SQLQueryType.ADD);
                 });
@@ -163,6 +215,21 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(true);
                 CathedraAdd.setVisible(false);
+
+                EDDel.setVisible(false);
+                StudentDel.setVisible(false);
+                StudentsGroupDel.setVisible(false);
+                TeacherDel.setVisible(false);
+                FacultyDel.setVisible(true);
+                CathedraDel.setVisible(false);
+
+                EDUpdate.setVisible(false);
+                StudentUpdate.setVisible(false);
+                StudentsGroupUpdate.setVisible(false);
+                TeacherUpdate.setVisible(false);
+                FacultyUpdate.setVisible(true);
+                CathedraUpdate.setVisible(false);
+
                 add.setOnAction(event2 -> {
                     AddToDatabase(SQLTable.FACULTY, SQLQueryType.ADD);
                 });
@@ -181,6 +248,21 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+
+                EDDel.setVisible(false);
+                StudentDel.setVisible(false);
+                StudentsGroupDel.setVisible(true);
+                TeacherDel.setVisible(false);
+                FacultyDel.setVisible(false);
+                CathedraDel.setVisible(false);
+
+                EDUpdate.setVisible(false);
+                StudentUpdate.setVisible(false);
+                StudentsGroupUpdate.setVisible(true);
+                TeacherUpdate.setVisible(false);
+                FacultyUpdate.setVisible(false);
+                CathedraUpdate.setVisible(false);
+
                 add.setOnAction(event2 -> {
                     AddToDatabase(SQLTable.GROUP, SQLQueryType.ADD);
                 });
@@ -199,6 +281,21 @@ public class ControllerFX {
                 TeacherAdd.setVisible(true);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+
+                EDDel.setVisible(false);
+                StudentDel.setVisible(false);
+                StudentsGroupDel.setVisible(false);
+                TeacherDel.setVisible(true);
+                FacultyDel.setVisible(false);
+                CathedraDel.setVisible(false);
+
+                EDUpdate.setVisible(false);
+                StudentUpdate.setVisible(false);
+                StudentsGroupUpdate.setVisible(false);
+                TeacherUpdate.setVisible(true);
+                FacultyUpdate.setVisible(false);
+                CathedraUpdate.setVisible(false);
+
                 add.setOnAction(event2 -> {
                     AddToDatabase(SQLTable.TEACHER, SQLQueryType.ADD);
                 });
@@ -217,6 +314,21 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+
+                EDDel.setVisible(true);
+                StudentDel.setVisible(false);
+                StudentsGroupDel.setVisible(false);
+                TeacherDel.setVisible(false);
+                FacultyDel.setVisible(false);
+                CathedraDel.setVisible(false);
+
+                EDUpdate.setVisible(true);
+                StudentUpdate.setVisible(false);
+                StudentsGroupUpdate.setVisible(false);
+                TeacherUpdate.setVisible(false);
+                FacultyUpdate.setVisible(false);
+                CathedraUpdate.setVisible(false);
+
                 add.setOnAction(event2 -> {
                     AddToDatabase(SQLTable.BUILDING, SQLQueryType.ADD);
                 });
@@ -242,7 +354,7 @@ public class ControllerFX {
 
     }
 
-    private void DeleteFromDatabase(SQLTable table, SQLQueryType query){
+    private void DeleteFromDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
 
 
