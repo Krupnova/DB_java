@@ -25,6 +25,7 @@ public class ControllerFX {
     private final String DB_SCHEMA_NAME = "univer";
     private Connection DB_CONNECTION = null;
 
+    private String Query;
 
     @FXML
     private Button update;
@@ -330,6 +331,7 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
 
                 add.setOnAction(event2 -> {
+
                     AddToDatabase(SQLTable.BUILDING, SQLQueryType.ADD);
                 });
                 delete.setOnAction(event2 -> {

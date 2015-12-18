@@ -62,7 +62,6 @@
                         <Font size="14.0" />
                      </font>
                   </RadioButton>
-                  <Button fx:id="selectTable" layoutX="82.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Select table" />
                   <Label layoutX="56.0" layoutY="201.0" text="For further work &#10;with a database select table" textAlignment="CENTER">
                      <font>
                         <Font size="15.0" />
