@@ -89,7 +89,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <AnchorPane fx:id="CathedraAdd" layoutX="-28.0" layoutY="-10.0" prefHeight="280.0" prefWidth="437.0">
+                                    <AnchorPane fx:id="CathedraAdd" layoutX="-28.0" layoutY="-10.0" prefHeight="280.0" prefWidth="437.0" visible="false">
                                        <children>
                                           <Group id="GR_cathedra" fx:id="Cathedra_add">
                                              <children>
@@ -126,7 +126,7 @@
                                           </Group>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="EDAdd" layoutX="-39.0" layoutY="-5.0" prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane fx:id="EDAdd" layoutX="-39.0" layoutY="-5.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                                        <children>
                                           <Group id="GR_building" fx:id="ED_add">
                                              <children>
@@ -157,7 +157,7 @@
                                           </Group>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="FacultyAdd" layoutX="-36.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane fx:id="FacultyAdd" layoutX="-36.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                                        <children>
                                           <Group id="GR_faculty" fx:id="Faculty_add">
                                              <children>
@@ -194,7 +194,7 @@
                                           </Group>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="StudentAdd" layoutX="-37.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane fx:id="StudentAdd" layoutX="-37.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                                        <children>
                                           <Group id="GR_student" fx:id="Student_add">
                                              <children>
@@ -231,7 +231,7 @@
                                           </Group>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="StudentsGroupAdd" layoutX="-37.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane fx:id="StudentsGroupAdd" layoutX="-37.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                                        <children>
                                           <Group id="GR_group" fx:id="StudentsGroup_add">
                                              <children>
@@ -274,7 +274,7 @@
                                           </Group>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="TeacherAdd" layoutX="-37.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane fx:id="TeacherAdd" layoutX="-37.0" layoutY="-40.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                                        <children>
                                           <Group id="GR_teacher" fx:id="Teacher_add">
                                              <children>

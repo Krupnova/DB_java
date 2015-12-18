@@ -6,6 +6,8 @@ import java.security.acl.Group;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -13,6 +15,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.Tables.Cathedra;
 
 public class ControllerFX {
 
@@ -22,37 +25,39 @@ public class ControllerFX {
     private final String DB_SCHEMA_NAME = "univer";
     private Connection DB_CONNECTION = null;
 
-    @FXML
-    private RadioButton faculty_rb;
 
+    @FXML
+    private Button update;
     @FXML
     private ToggleGroup TG1;
     @FXML
     private Button add;
     @FXML
+    private Button delete;
+    @FXML
     private RadioButton cathedra_rb;
     @FXML
     private RadioButton student_rb;
     @FXML
-    private Button update;
-
-    @FXML
-    private Button delete;
-
-
+    private RadioButton faculty_rb;
     @FXML
     private RadioButton studentsGroup_rb;
-
-
     @FXML
     private RadioButton teacher_rb;
-
-
     @FXML
     private RadioButton EB_rb;
-
-
-
+    @FXML
+    private AnchorPane CathedraAdd;
+    @FXML
+    private AnchorPane EDAdd;
+    @FXML
+    private AnchorPane FacultyAdd;
+    @FXML
+    private AnchorPane StudentAdd;
+    @FXML
+    private AnchorPane TeacherAdd;
+    @FXML
+    private AnchorPane StudentsGroupAdd;
     @FXML
     private Tab tab_del;
     @FXML
@@ -110,17 +115,119 @@ public class ControllerFX {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            cathedra_rb.setOnAction(event1 -> {
+                EDAdd.setVisible(false);
+                StudentAdd.setVisible(false);
+                StudentsGroupAdd.setVisible(false);
+                TeacherAdd.setVisible(false);
+                FacultyAdd.setVisible(false);
+                CathedraAdd.setVisible(true);
 
-            selectTable.setOnAction((ActionEvent) -> {
-                System.out.println("Table selected");
-                //pane_del.setVisible(true);
+                //тут еще будут все анкор пейны
 
-                /*try{
-
-
-                }*/
+                //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса дл€ опред талицы
+                add.setOnAction(event2 -> {
+                    AddToDatabase(SQLTable.CATHEDRA, SQLQueryType.ADD);
+                });
+                delete.setOnAction(event2 -> {
+                    DeleteFromDatabase(SQLTable.CATHEDRA, SQLQueryType.DELETE);
+                });
+                update.setOnAction(event2 -> {
+                    UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
+                });
 
             });
+
+            student_rb.setOnAction(event1 -> {
+                EDAdd.setVisible(false);
+                StudentAdd.setVisible(true);
+                StudentsGroupAdd.setVisible(false);
+                TeacherAdd.setVisible(false);
+                FacultyAdd.setVisible(false);
+                CathedraAdd.setVisible(false);
+                add.setOnAction(event2 -> {
+                    AddToDatabase(SQLTable.STUDENT, SQLQueryType.ADD);
+                });
+                delete.setOnAction(event2 -> {
+                    DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
+                });
+                update.setOnAction(event2 -> {
+                    UpdateDatabase(SQLTable.STUDENT, SQLQueryType.UPDATE);
+                });
+            });
+
+            faculty_rb.setOnAction(event1 -> {
+                EDAdd.setVisible(false);
+                StudentAdd.setVisible(false);
+                StudentsGroupAdd.setVisible(false);
+                TeacherAdd.setVisible(false);
+                FacultyAdd.setVisible(true);
+                CathedraAdd.setVisible(false);
+                add.setOnAction(event2 -> {
+                    AddToDatabase(SQLTable.FACULTY, SQLQueryType.ADD);
+                });
+                delete.setOnAction(event2 -> {
+                    DeleteFromDatabase(SQLTable.FACULTY, SQLQueryType.DELETE);
+                });
+                update.setOnAction(event2 -> {
+                    UpdateDatabase(SQLTable.FACULTY, SQLQueryType.UPDATE);
+                });
+            });
+
+            studentsGroup_rb.setOnAction(event1 -> {
+                EDAdd.setVisible(false);
+                StudentAdd.setVisible(false);
+                StudentsGroupAdd.setVisible(true);
+                TeacherAdd.setVisible(false);
+                FacultyAdd.setVisible(false);
+                CathedraAdd.setVisible(false);
+                add.setOnAction(event2 -> {
+                    AddToDatabase(SQLTable.GROUP, SQLQueryType.ADD);
+                });
+                delete.setOnAction(event2 -> {
+                    DeleteFromDatabase(SQLTable.GROUP, SQLQueryType.DELETE);
+                });
+                update.setOnAction(event2 -> {
+                    UpdateDatabase(SQLTable.GROUP, SQLQueryType.UPDATE);
+                });
+            });
+
+            teacher_rb.setOnAction(event1 -> {
+                EDAdd.setVisible(false);
+                StudentAdd.setVisible(false);
+                StudentsGroupAdd.setVisible(false);
+                TeacherAdd.setVisible(true);
+                FacultyAdd.setVisible(false);
+                CathedraAdd.setVisible(false);
+                add.setOnAction(event2 -> {
+                    AddToDatabase(SQLTable.TEACHER, SQLQueryType.ADD);
+                });
+                delete.setOnAction(event2 -> {
+                    DeleteFromDatabase(SQLTable.TEACHER, SQLQueryType.DELETE);
+                });
+                update.setOnAction(event2 -> {
+                    UpdateDatabase(SQLTable.TEACHER, SQLQueryType.UPDATE);
+                });
+            });
+
+            EB_rb.setOnAction(event1 -> {
+                EDAdd.setVisible(true);
+                StudentAdd.setVisible(false);
+                StudentsGroupAdd.setVisible(false);
+                TeacherAdd.setVisible(false);
+                FacultyAdd.setVisible(false);
+                CathedraAdd.setVisible(false);
+                add.setOnAction(event2 -> {
+                    AddToDatabase(SQLTable.BUILDING, SQLQueryType.ADD);
+                });
+                delete.setOnAction(event2 -> {
+                    DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
+                });
+                update.setOnAction(event2 -> {
+                    UpdateDatabase(SQLTable.BUILDING, SQLQueryType.UPDATE);
+                });
+            });
+
         });
     }
     @FXML
@@ -129,23 +236,23 @@ public class ControllerFX {
     public void setStage(Stage source) {
         this.guiRoot = source;
     }
-    /*private void SelectTable (SQLTable rbutton, SQLQueryType tab){
-        reg.setVisible(true);
+    private void AddToDatabase(SQLTable table, SQLQueryType query){
+        System.out.println("table " + table.toString() + " query " + query.toString());
 
-        switch(tab){
-            case ADD:{
-                switch(rbutton){
-                    case CATHEDRA:{
-                        reg.setVisible(true);
-                    }
-                }
 
-                break;
-            }
+    }
 
-        }
+    private void DeleteFromDatabase(SQLTable table, SQLQueryType query){
+        System.out.println("table " + table.toString() + " query " + query.toString());
 
-    }*/
+
+    }
+
+    private void UpdateDatabase (SQLTable table, SQLQueryType query){
+        System.out.println("table " + table.toString() + " query " + query.toString());
+
+
+    }
 
     /*
     * “ранзакци€ - это комплексна€ операци€, состо€ща€ из группы операций, которые выполн€ютс€ либо все,
