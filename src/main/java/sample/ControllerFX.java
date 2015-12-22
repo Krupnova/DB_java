@@ -145,9 +145,6 @@ public class ControllerFX {
     @FXML // fx:id="nameFacultuStuGro"
     private TextField nameFacultuStuGro; // Value injected by FXMLLoader
 
-    @FXML // fx:id="testButton"
-    private Button testButton; // Value injected by FXMLLoader
-
     @FXML // fx:id="StudentUpdate"
     private AnchorPane StudentUpdate; // Value injected by FXMLLoader
 
@@ -367,7 +364,7 @@ public class ControllerFX {
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    void initialize() throws SQLException, ClassNotFoundException {
         assert EDDel != null : "fx:id=\"EDDel\" was not injected: check your FXML file 'sample.fxml'.";
         assert direction_upd != null : "fx:id=\"direction_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameGroup_del != null : "fx:id=\"nameGroup_del\" was not injected: check your FXML file 'sample.fxml'.";
@@ -407,7 +404,6 @@ public class ControllerFX {
         assert nameCourse != null : "fx:id=\"nameCourse\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameFacultuStuGro_upd != null : "fx:id=\"nameFacultuStuGro_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameFacultuStuGro != null : "fx:id=\"nameFacultuStuGro\" was not injected: check your FXML file 'sample.fxml'.";
-        assert testButton != null : "fx:id=\"testButton\" was not injected: check your FXML file 'sample.fxml'.";
         assert StudentUpdate != null : "fx:id=\"StudentUpdate\" was not injected: check your FXML file 'sample.fxml'.";
         assert EDAdd != null : "fx:id=\"EDAdd\" was not injected: check your FXML file 'sample.fxml'.";
         assert FacultyUpdate != null : "fx:id=\"FacultyUpdate\" was not injected: check your FXML file 'sample.fxml'.";
@@ -481,18 +477,11 @@ public class ControllerFX {
         assert addressTeach != null : "fx:id=\"addressTeach\" was not injected: check your FXML file 'sample.fxml'.";
         assert mainTableView != null : "fx:id=\"mainTableView\" was not injected: check your FXML file 'sample.fxml'.";
 
-        testButton.setOnAction(event -> {
-            System.out.println("Button was pressed!");
+        DB_CONNECTION = getConnection();
+        if (DB_CONNECTION != null)
+            System.out.println("Got a connection!");
 
-            try {
-                DB_CONNECTION = getConnection();
-
-                if (DB_CONNECTION != null)
-                    System.out.println("Got a connection!");
-
-                System.out.println();
-
-                /*ResultSet test2 = getResultFromDB(
+       /*ResultSet test2 = getResultFromDB(
                         SQLQueryType.SELECT,
                         "cathedra",
                         "head_of_department",
@@ -521,9 +510,7 @@ public class ControllerFX {
                     System.out.println(test.getString(1));
                 }*/
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
             cathedra_rb.setOnAction(event1 -> {
                 EDAdd.setVisible(false);
                 StudentAdd.setVisible(false);
@@ -531,6 +518,7 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(true);
+                add.setVisible(true);
 
                 EDDel.setVisible(false);
                 StudentDel.setVisible(false);
@@ -538,6 +526,7 @@ public class ControllerFX {
                 TeacherDel.setVisible(false);
                 FacultyDel.setVisible(false);
                 CathedraDel.setVisible(true);
+                delete.setVisible(true);
 
                 EDUpdate.setVisible(false);
                 StudentUpdate.setVisible(false);
@@ -545,6 +534,7 @@ public class ControllerFX {
                 TeacherUpdate.setVisible(false);
                 FacultyUpdate.setVisible(false);
                 CathedraUpdate.setVisible(true);
+                update.setVisible(true);
 
                 //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса для опред талицы
                 add.setOnAction(event2 -> {
@@ -591,6 +581,7 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+                add.setVisible(true);
 
                 EDDel.setVisible(false);
                 StudentDel.setVisible(true);
@@ -598,6 +589,7 @@ public class ControllerFX {
                 TeacherDel.setVisible(false);
                 FacultyDel.setVisible(false);
                 CathedraDel.setVisible(false);
+                delete.setVisible(true);
 
                 EDUpdate.setVisible(false);
                 StudentUpdate.setVisible(true);
@@ -605,6 +597,7 @@ public class ControllerFX {
                 TeacherUpdate.setVisible(false);
                 FacultyUpdate.setVisible(false);
                 CathedraUpdate.setVisible(false);
+                update.setVisible(true);
 
                 add.setOnAction(event2 -> {
                     //AddToDatabase(SQLTable.STUDENT, SQLQueryType.INSERT);
@@ -648,6 +641,7 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(true);
                 CathedraAdd.setVisible(false);
+                add.setVisible(true);
 
                 EDDel.setVisible(false);
                 StudentDel.setVisible(false);
@@ -655,6 +649,7 @@ public class ControllerFX {
                 TeacherDel.setVisible(false);
                 FacultyDel.setVisible(true);
                 CathedraDel.setVisible(false);
+                delete.setVisible(true);
 
                 EDUpdate.setVisible(false);
                 StudentUpdate.setVisible(false);
@@ -662,6 +657,7 @@ public class ControllerFX {
                 TeacherUpdate.setVisible(false);
                 FacultyUpdate.setVisible(true);
                 CathedraUpdate.setVisible(false);
+                update.setVisible(true);
 
                 add.setOnAction(event2 -> {
                    // AddToDatabase(SQLTable.FACULTY, SQLQueryType.INSERT);
@@ -705,6 +701,7 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+                add.setVisible(true);
 
                 EDDel.setVisible(false);
                 StudentDel.setVisible(false);
@@ -712,6 +709,7 @@ public class ControllerFX {
                 TeacherDel.setVisible(false);
                 FacultyDel.setVisible(false);
                 CathedraDel.setVisible(false);
+                delete.setVisible(true);
 
                 EDUpdate.setVisible(false);
                 StudentUpdate.setVisible(false);
@@ -719,6 +717,7 @@ public class ControllerFX {
                 TeacherUpdate.setVisible(false);
                 FacultyUpdate.setVisible(false);
                 CathedraUpdate.setVisible(false);
+                update.setVisible(true);
 
                 add.setOnAction(event2 -> {
                   //  AddToDatabase(SQLTable.GROUP, SQLQueryType.INSERT);
@@ -766,6 +765,7 @@ public class ControllerFX {
                 TeacherAdd.setVisible(true);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+                add.setVisible(true);
 
                 EDDel.setVisible(false);
                 StudentDel.setVisible(false);
@@ -773,6 +773,7 @@ public class ControllerFX {
                 TeacherDel.setVisible(true);
                 FacultyDel.setVisible(false);
                 CathedraDel.setVisible(false);
+                delete.setVisible(true);
 
                 EDUpdate.setVisible(false);
                 StudentUpdate.setVisible(false);
@@ -780,6 +781,7 @@ public class ControllerFX {
                 TeacherUpdate.setVisible(true);
                 FacultyUpdate.setVisible(false);
                 CathedraUpdate.setVisible(false);
+                update.setVisible(true);
 
                 add.setOnAction(event2 -> {
                     //AddToDatabase(SQLTable.TEACHER, SQLQueryType.INSERT);
@@ -835,6 +837,7 @@ public class ControllerFX {
                 TeacherAdd.setVisible(false);
                 FacultyAdd.setVisible(false);
                 CathedraAdd.setVisible(false);
+                add.setVisible(true);
 
                 EDDel.setVisible(true);
                 StudentDel.setVisible(false);
@@ -842,6 +845,7 @@ public class ControllerFX {
                 TeacherDel.setVisible(false);
                 FacultyDel.setVisible(false);
                 CathedraDel.setVisible(false);
+                delete.setVisible(true);
 
                 EDUpdate.setVisible(true);
                 StudentUpdate.setVisible(false);
@@ -849,6 +853,7 @@ public class ControllerFX {
                 TeacherUpdate.setVisible(false);
                 FacultyUpdate.setVisible(false);
                 CathedraUpdate.setVisible(false);
+                update.setVisible(true);
 
                 add.setOnAction(event2 -> {
 
@@ -883,11 +888,9 @@ public class ControllerFX {
                 });
             });
 
-        });
     }
 
-    @FXML
-    private Button selectTable;
+
 
     public void setStage(Stage source) {
         this.guiRoot = source;
@@ -982,7 +985,7 @@ public class ControllerFX {
         return result;
     }
 
-    private /*ResultSet*/ void getResultFromDB(SQLQueryType type, String... args) throws Exception {
+    private void getResultFromDB(SQLQueryType type, String... args) throws Exception {
         ResultSet result = null;
 
         switch (type) {
@@ -1063,7 +1066,7 @@ public class ControllerFX {
             }
         }
 
-       // return result;
+
     }
 
 
