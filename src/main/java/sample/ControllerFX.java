@@ -364,6 +364,7 @@ public class ControllerFX {
     @FXML // fx:id="mainTableView"
     private TableView<?> mainTableView; // Value injected by FXMLLoader
 
+
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -498,18 +499,18 @@ public class ControllerFX {
                         getSQLString("Vahidov")
                 );
 
-                while (test2.next()) {
+              /*  while (test2.next()) {
                     System.out.println(test2.getString(2));
-                }
+                }*/
 
-                ResultSet testAdd1 = getResultFromDB(
+                /*ResultSet testAdd1 = getResultFromDB(
                         SQLQueryType.INSERT,
                         "cathedra",
-                        "TestCathedra1",
+                        "TestCathedra2",
                         "TestHeadOfDepartment",
                         "4368236",
                         "6"
-                );
+                );*/
 
                 ResultSet test = getResultFromDB(
                         SQLQueryType.SELECT,
@@ -548,13 +549,31 @@ public class ControllerFX {
                 //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса дл€ опред талицы
                 add.setOnAction(event2 -> {
 
-                   AddToDatabase(SQLTable.CATHEDRA, SQLQueryType.INSERT);
+                  // AddToDatabase(SQLTable.CATHEDRA, SQLQueryType.INSERT);
+                    String textCathAdd1 = new String();
+                    textCathAdd1 = nameCathedraCath.getText();
+                    String textCathAdd2 = new String();
+                    textCathAdd2 = headDepartment.getText();
+                    String textCathAdd3 = new String();
+                    textCathAdd3 = phoneDepartment.getText();
+                    String textCathAdd4 = new String();
+                    textCathAdd4 = numberEDCath.getText();
                 });
                 delete.setOnAction(event2 -> {
-                    DeleteFromDatabase(SQLTable.CATHEDRA, SQLQueryType.DELETE);
+                    //DeleteFromDatabase(SQLTable.CATHEDRA, SQLQueryType.DELETE);
+                    String textCathDel = new String();
+                    textCathDel = nameCathedra_del.getText();
                 });
                 update.setOnAction(event2 -> {
-                    UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
+                   // UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
+                    String textCathUpd1 = new String();
+                    textCathUpd1 = nameCathedraCath_upd.getText();
+                    String textCathUpd2 = new String();
+                    textCathUpd2 = headDepartment_upd.getText();
+                    String textCathUpd3 = new String();
+                    textCathUpd3 = phoneDepartment_upd.getText();
+                    String textCathUpd4 = new String();
+                    textCathUpd4 = numberEDCath_upd.getText();
                 });
 
             });
@@ -582,13 +601,31 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
 
                 add.setOnAction(event2 -> {
-                    AddToDatabase(SQLTable.STUDENT, SQLQueryType.INSERT);
+                    //AddToDatabase(SQLTable.STUDENT, SQLQueryType.INSERT);
+                    String textStudentAdd1 = new String();
+                    textStudentAdd1 = numberRecordBook.getText();
+                    String textStudentAdd2 = new String();
+                    textStudentAdd2 = lastNameStudent.getText();
+                    String textStudentAdd3 = new String();
+                    textStudentAdd3 = yearBirth.getText();
+                    String textStudentAdd4 = new String();
+                    textStudentAdd4 = nameGroupStu.getText();
                 });
                 delete.setOnAction(event2 -> {
-                    DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
+                    //DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
+                    String textStudentDel = new String();
+                    textStudentDel = numberRecordBook_del.getText();
                 });
                 update.setOnAction(event2 -> {
-                    UpdateDatabase(SQLTable.STUDENT, SQLQueryType.UPDATE);
+                    //UpdateDatabase(SQLTable.STUDENT, SQLQueryType.UPDATE);
+                    String textStudentUpd1 = new String();
+                    textStudentUpd1 = numberRecordBook_upd.getText();
+                    String textStudentUpd2 = new String();
+                    textStudentUpd2 = lastNameStudent_upd.getText();
+                    String textStudentUpd3 = new String();
+                    textStudentUpd3 = yearBirth_upd.getText();
+                    String textStudentUpd4 = new String();
+                    textStudentUpd4 = nameGroupStu_upd.getText();
                 });
             });
 
@@ -615,13 +652,31 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
 
                 add.setOnAction(event2 -> {
-                    AddToDatabase(SQLTable.FACULTY, SQLQueryType.INSERT);
+                   // AddToDatabase(SQLTable.FACULTY, SQLQueryType.INSERT);
+                    String textFacultyAdd1 = new String();
+                    textFacultyAdd1 = nameFacultyFac.getText();
+                    String textFacultyAdd2 = new String();
+                    textFacultyAdd2 = dean.getText();
+                    String textFacultyAdd3 = new String();
+                    textFacultyAdd3 = phoneDean.getText();
+                    String textFacultyAdd4 = new String();
+                    textFacultyAdd4 = numberStudents.getText();
                 });
                 delete.setOnAction(event2 -> {
-                    DeleteFromDatabase(SQLTable.FACULTY, SQLQueryType.DELETE);
+                    //DeleteFromDatabase(SQLTable.FACULTY, SQLQueryType.DELETE);
+                    String textFacultyDel = new String();
+                    textFacultyDel = nameFaculty_del.getText();
                 });
                 update.setOnAction(event2 -> {
-                    UpdateDatabase(SQLTable.FACULTY, SQLQueryType.UPDATE);
+                    //UpdateDatabase(SQLTable.FACULTY, SQLQueryType.UPDATE);
+                    String textFacultyUpd1 = new String();
+                    textFacultyUpd1 = nameFacultyFac_upd.getText();
+                    String textFacultyUpd2 = new String();
+                    textFacultyUpd2 = dean_upd.getText();
+                    String textFacultyUpd3 = new String();
+                    textFacultyUpd3 = phoneDean_upd.getText();
+                    String textFacultyUpd4 = new String();
+                    textFacultyUpd4 = numberStudents_upd.getText();
                 });
             });
 
@@ -648,13 +703,35 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
 
                 add.setOnAction(event2 -> {
-                    AddToDatabase(SQLTable.GROUP, SQLQueryType.INSERT);
+                  //  AddToDatabase(SQLTable.GROUP, SQLQueryType.INSERT);
+                    String textStuGroupAdd1 = new String();
+                    textStuGroupAdd1 = nameGroupStuGrou.getText();
+                    String textStuGroupAdd2 = new String();
+                    textStuGroupAdd2 = nameFacultuStuGro.getText();
+                    String textStuGroupAdd3 = new String();
+                    textStuGroupAdd3 = nameCourse.getText();
+                    String textStuGroupAdd4 = new String();
+                    textStuGroupAdd4 = direction.getText();
+                    String textStuGroupAdd5 = new String();
+                    textStuGroupAdd5 = nameCathedraStuGro.getText();
                 });
                 delete.setOnAction(event2 -> {
-                    DeleteFromDatabase(SQLTable.GROUP, SQLQueryType.DELETE);
+                    //DeleteFromDatabase(SQLTable.GROUP, SQLQueryType.DELETE);
+                    String textStuGroupDel = new String();
+                    textStuGroupDel = nameGroup_del.getText();
                 });
                 update.setOnAction(event2 -> {
-                    UpdateDatabase(SQLTable.GROUP, SQLQueryType.UPDATE);
+                   // UpdateDatabase(SQLTable.GROUP, SQLQueryType.UPDATE);
+                    String textStuGroupUpd1 = new String();
+                    textStuGroupUpd1 = nameGroupStuGro_upd.getText();
+                    String textStuGroupUpd2 = new String();
+                    textStuGroupUpd2 = nameFacultuStuGro_upd.getText();
+                    String textStuGroupUpd3 = new String();
+                    textStuGroupUpd3 = nameCourse_upd.getText();
+                    String textStuGroupUpd4 = new String();
+                    textStuGroupUpd4 = direction_upd.getText();
+                    String textStuGroupUpd5 = new String();
+                    textStuGroupUpd5 = nameCathedraStuGro_upd.getText();
                 });
             });
 
@@ -681,13 +758,43 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
 
                 add.setOnAction(event2 -> {
-                    AddToDatabase(SQLTable.TEACHER, SQLQueryType.INSERT);
+                    //AddToDatabase(SQLTable.TEACHER, SQLQueryType.INSERT);
+                    String textTeacherAdd1 = new String();
+                    textTeacherAdd1 = personalNumberTeacher.getText();
+                    String textTeacherAdd2 = new String();
+                    textTeacherAdd2 = lastNameTeacher.getText();
+                    String textTeacherAdd3 = new String();
+                    textTeacherAdd3 = jobTittle.getText();
+                    String textTeacherAdd4 = new String();
+                    textTeacherAdd4 = degree.getText();
+                    String textTeacherAdd5 = new String();
+                    textTeacherAdd5 = nameCathedraTeach.getText();
+                    String textTeacherAdd6 = new String();
+                    textTeacherAdd6 = phone.getText();
+                    String textTeacherAdd7 = new String();
+                    textTeacherAdd7 = addressTeach.getText();
                 });
                 delete.setOnAction(event2 -> {
-                    DeleteFromDatabase(SQLTable.TEACHER, SQLQueryType.DELETE);
+                    //DeleteFromDatabase(SQLTable.TEACHER, SQLQueryType.DELETE);
+                    String textTeacherDel = new String();
+                    textTeacherDel = personalNumberTeach_del.getText();
                 });
                 update.setOnAction(event2 -> {
-                    UpdateDatabase(SQLTable.TEACHER, SQLQueryType.UPDATE);
+                   // UpdateDatabase(SQLTable.TEACHER, SQLQueryType.UPDATE);
+                    String textTeacherUpd1 = new String();
+                    textTeacherUpd1 = personalNumberTeacher_upd.getText();
+                    String textTeacherUpd2 = new String();
+                    textTeacherUpd2 = lastNameTeacher_upd.getText();
+                    String textTeacherUpd3 = new String();
+                    textTeacherUpd3 = jobTittle_upd.getText();
+                    String textTeacherUpd4 = new String();
+                    textTeacherUpd4 = degree_upd.getText();
+                    String textTeacherUpd5 = new String();
+                    textTeacherUpd5 = nameCathedraTeach_upd.getText();
+                    String textTeacherUpd6 = new String();
+                    textTeacherUpd6 = phone_upd.getText();
+                    String textTeacherUpd7 = new String();
+                    textTeacherUpd7 = addressTeach_upd.getText();
                 });
             });
 
@@ -715,13 +822,28 @@ public class ControllerFX {
 
                 add.setOnAction(event2 -> {
 
-                    AddToDatabase(SQLTable.BUILDING, SQLQueryType.INSERT);
+                   // AddToDatabase(SQLTable.BUILDING, SQLQueryType.INSERT);
+                    String textEDAdd1 = new String();
+                    textEDAdd1 = NumberED.getText();
+                    String textEDAdd2 = new String();
+                    textEDAdd2 = addressEB.getText();
+                    String textEDAdd3 = new String();
+                    textEDAdd3 = phoneDisp.getText();
+
                 });
                 delete.setOnAction(event2 -> {
-                    DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
+                    //DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
+                    String textEDDel = new String();
+                    textEDDel = numberED_del.getText();
                 });
                 update.setOnAction(event2 -> {
-                    UpdateDatabase(SQLTable.BUILDING, SQLQueryType.UPDATE);
+                    //UpdateDatabase(SQLTable.BUILDING, SQLQueryType.UPDATE);
+                    String textEDUpd1 = new String();
+                    textEDUpd1 = NumberED_upd.getText();
+                    String textEDUpd2 = new String();
+                    textEDUpd2 = addressEB_upd.getText();
+                    String textEDUpd3 = new String();
+                    textEDUpd3 = phoneDisp_upd.getText();
                 });
             });
 
@@ -737,6 +859,9 @@ public class ControllerFX {
 
     private void AddToDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
+       /* String test = new String();
+        test = nameCathedraCath.getText();
+        System.out.println(test); //ok //давай)*/
 
 
     }
@@ -845,12 +970,7 @@ public class ControllerFX {
                 break;
             }
             case INSERT: {
-                // INSERT INTO table (columns) VALUES (expressions);
-                // как-то сделать запрос
-                // таблшица, - это есть, это мы знаем как найти
-                // колонка, - ? где достать список колонок дл€ каждой конкретной таблицы? ƒЋя ѕ–ќ√–јћћџ
-                // текстбоксы
-                // "insert into univer.cathedra (Name_of_cathedra...) values (" + nameCathedraCt + "" + ....
+
                 if (args.length == 0) {
                     throw new SQLException("No arguments were provided for INSERT statement.");
                 } else {
