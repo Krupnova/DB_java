@@ -492,12 +492,12 @@ public class ControllerFX {
 
                 System.out.println();
 
-                ResultSet test2 = getResultFromDB(
+                /*ResultSet test2 = getResultFromDB(
                         SQLQueryType.SELECT,
                         "cathedra",
                         "head_of_department",
                         getSQLString("Vahidov")
-                );
+                );*/
 
               /*  while (test2.next()) {
                     System.out.println(test2.getString(2));
@@ -510,16 +510,16 @@ public class ControllerFX {
                         "TestHeadOfDepartment",
                         "4368236",
                         "6"
-                );*/
+                );
 
                 ResultSet test = getResultFromDB(
                         SQLQueryType.SELECT,
                         "cathedra"
-                );
+                );*/
 
-                while (test.next()) {
+                /*while (test.next()) {
                     System.out.println(test.getString(1));
-                }
+                }*/
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -558,6 +558,12 @@ public class ControllerFX {
                     textCathAdd3 = phoneDepartment.getText();
                     String textCathAdd4 = new String();
                     textCathAdd4 = numberEDCath.getText();
+
+                    try {
+                        getResultFromDB (SQLQueryType.INSERT, "cathedra", textCathAdd1,textCathAdd2, textCathAdd3, textCathAdd4);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
                 delete.setOnAction(event2 -> {
                     //DeleteFromDatabase(SQLTable.CATHEDRA, SQLQueryType.DELETE);
@@ -610,6 +616,12 @@ public class ControllerFX {
                     textStudentAdd3 = yearBirth.getText();
                     String textStudentAdd4 = new String();
                     textStudentAdd4 = nameGroupStu.getText();
+
+                    try {
+                        getResultFromDB (SQLQueryType.INSERT, "student", textStudentAdd1,textStudentAdd2, textStudentAdd3, textStudentAdd4);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
                 delete.setOnAction(event2 -> {
                     //DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
@@ -661,6 +673,12 @@ public class ControllerFX {
                     textFacultyAdd3 = phoneDean.getText();
                     String textFacultyAdd4 = new String();
                     textFacultyAdd4 = numberStudents.getText();
+
+                    try {
+                        getResultFromDB (SQLQueryType.INSERT, "faculty", textFacultyAdd1,textFacultyAdd2, textFacultyAdd3, textFacultyAdd4);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
                 delete.setOnAction(event2 -> {
                     //DeleteFromDatabase(SQLTable.FACULTY, SQLQueryType.DELETE);
@@ -714,6 +732,12 @@ public class ControllerFX {
                     textStuGroupAdd4 = direction.getText();
                     String textStuGroupAdd5 = new String();
                     textStuGroupAdd5 = nameCathedraStuGro.getText();
+
+                    try {
+                        getResultFromDB (SQLQueryType.INSERT, "students_group", textStuGroupAdd1,textStuGroupAdd2, textStuGroupAdd3, textStuGroupAdd4, textStuGroupAdd5);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
                 delete.setOnAction(event2 -> {
                     //DeleteFromDatabase(SQLTable.GROUP, SQLQueryType.DELETE);
@@ -773,6 +797,12 @@ public class ControllerFX {
                     textTeacherAdd6 = phone.getText();
                     String textTeacherAdd7 = new String();
                     textTeacherAdd7 = addressTeach.getText();
+
+                    try {
+                        getResultFromDB (SQLQueryType.INSERT, "teacher", textTeacherAdd1,textTeacherAdd2, textTeacherAdd3, textTeacherAdd4, textTeacherAdd5, textTeacherAdd6, textTeacherAdd7);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
                 delete.setOnAction(event2 -> {
                     //DeleteFromDatabase(SQLTable.TEACHER, SQLQueryType.DELETE);
@@ -830,6 +860,12 @@ public class ControllerFX {
                     String textEDAdd3 = new String();
                     textEDAdd3 = phoneDisp.getText();
 
+                    try {
+                        getResultFromDB (SQLQueryType.INSERT, "education_building", textEDAdd1,textEDAdd2, textEDAdd3);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 });
                 delete.setOnAction(event2 -> {
                     //DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
@@ -861,7 +897,7 @@ public class ControllerFX {
         System.out.println("table " + table.toString() + " query " + query.toString());
        /* String test = new String();
         test = nameCathedraCath.getText();
-        System.out.println(test); //ok //давай)*/
+        System.out.println(test); */
 
 
     }
@@ -946,7 +982,7 @@ public class ControllerFX {
         return result;
     }
 
-    private ResultSet getResultFromDB(SQLQueryType type, String... args) throws Exception {
+    private /*ResultSet*/ void getResultFromDB(SQLQueryType type, String... args) throws Exception {
         ResultSet result = null;
 
         switch (type) {
@@ -1027,6 +1063,8 @@ public class ControllerFX {
             }
         }
 
-        return result;
+       // return result;
     }
+
+
 }
