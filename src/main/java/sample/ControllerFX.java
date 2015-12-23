@@ -593,6 +593,7 @@ public class ControllerFX {
                     try {
                         Statement insertion = DB_CONNECTION.createStatement();
                         insertion.executeUpdate(queryBuilder.toString());
+                        nameCathedra_del.clear();
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -600,6 +601,7 @@ public class ControllerFX {
                 });
                 update.setOnAction(event2 -> {
                    // UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
+                    //UPDATE `univer`.`cathedra` SET `Head_of_department`='Lavrov' WHERE `Name_of_the_cathedra`='Building and road machines';
                     String textCathUpd1 = new String();
                     textCathUpd1 = nameCathedraCath_upd.getText();
                     String textCathUpd2 = new String();
@@ -608,6 +610,21 @@ public class ControllerFX {
                     textCathUpd3 = phoneDepartment_upd.getText();
                     String textCathUpd4 = new String();
                     textCathUpd4 = numberEDCath_upd.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("UPDATE univer.cathedra SET Head_of_department='").append(textCathUpd2).append("', Phone_of_the_department='").append(textCathUpd3).append("', Number_of_the_education_building='").append(textCathUpd4).append("' WHERE Name_of_the_cathedra='").append(textCathUpd1).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+                        nameCathedraCath_upd.clear();
+                        headDepartment_upd.clear();
+                        phoneDepartment_upd.clear();
+                        numberEDCath_upd.clear();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+
                 });
 
             });
@@ -670,6 +687,7 @@ public class ControllerFX {
                     try {
                         Statement insertion = DB_CONNECTION.createStatement();
                         insertion.executeUpdate(queryBuilder.toString());
+                        numberRecordBook_del.clear();
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -685,6 +703,19 @@ public class ControllerFX {
                     textStudentUpd3 = yearBirth_upd.getText();
                     String textStudentUpd4 = new String();
                     textStudentUpd4 = nameGroupStu_upd.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("UPDATE univer.student SET Last_name='").append(textStudentUpd2).append("', Year_of_birth='").append(textStudentUpd3).append("', Name_of_the_group='").append(textStudentUpd4).append("' WHERE Number_record_book='").append(textStudentUpd1).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+                        numberRecordBook_upd.clear();
+                        lastNameStudent_upd.clear();
+                        yearBirth_upd.clear();
+                        nameGroupStu_upd.clear();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
             });
 
@@ -746,6 +777,7 @@ public class ControllerFX {
                     try {
                         Statement insertion = DB_CONNECTION.createStatement();
                         insertion.executeUpdate(queryBuilder.toString());
+                        nameFaculty_del.clear();
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -762,6 +794,19 @@ public class ControllerFX {
                     textFacultyUpd3 = phoneDean_upd.getText();
                     String textFacultyUpd4 = new String();
                     textFacultyUpd4 = numberStudents_upd.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("UPDATE univer.faculty SET Dean='").append(textFacultyUpd2).append("', Phone_dean='").append(textFacultyUpd3).append("', Number_of_students_at_the_faculty='").append(textFacultyUpd4).append("' WHERE Name_of_the_faculty='").append(textFacultyUpd1).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+                        nameFacultyFac_upd.clear();
+                        dean_upd.clear();
+                        phoneDean_upd.clear();
+                        numberStudents_upd.clear();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
             });
 
@@ -825,6 +870,7 @@ public class ControllerFX {
                     try {
                         Statement insertion = DB_CONNECTION.createStatement();
                         insertion.executeUpdate(queryBuilder.toString());
+                        nameGroup_del.clear();
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -842,6 +888,20 @@ public class ControllerFX {
                     textStuGroupUpd4 = direction_upd.getText();
                     String textStuGroupUpd5 = new String();
                     textStuGroupUpd5 = nameCathedraStuGro_upd.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("UPDATE univer.students_group SET Name_of_the_faculty='").append(textStuGroupUpd2).append("', Number_of_course='").append(textStuGroupUpd3).append("', Direction='").append(textStuGroupUpd4).append("', Name_of_cathedra='").append(textStuGroupUpd5).append("' WHERE Name_of_the_group='").append(textStuGroupUpd1).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+                        nameGroupStuGro_upd.clear();
+                        nameFacultuStuGro_upd.clear();
+                        nameCourse_upd.clear();
+                        direction_upd.clear();
+                        nameCathedraStuGro_upd.clear();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
             });
 
@@ -909,6 +969,7 @@ public class ControllerFX {
                     try {
                         Statement insertion = DB_CONNECTION.createStatement();
                         insertion.executeUpdate(queryBuilder.toString());
+                        personalNumberTeach_del.clear();
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -930,6 +991,22 @@ public class ControllerFX {
                     textTeacherUpd6 = phone_upd.getText();
                     String textTeacherUpd7 = new String();
                     textTeacherUpd7 = addressTeach_upd.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("UPDATE univer.teacher SET Last_name='").append(textTeacherUpd2).append("', Job_title='").append(textTeacherUpd3).append("', Degree='").append(textTeacherUpd4).append("', Name_of_the_cathedra='").append(textTeacherUpd5).append("', Phone='").append(textTeacherUpd6).append("', Address='").append(textTeacherUpd6).append("' WHERE Personal_number_teacher='").append(textTeacherUpd1).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+                        personalNumberTeacher_upd.clear();
+                        lastNameTeacher_upd.clear();
+                        jobTittle_upd.clear();
+                        degree_upd.clear();
+                        nameCathedraTeach_upd.clear();
+                        phone_upd.clear();
+                        addressTeach_upd.clear();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
             });
 
@@ -990,6 +1067,7 @@ public class ControllerFX {
                     try {
                         Statement insertion = DB_CONNECTION.createStatement();
                         insertion.executeUpdate(queryBuilder.toString());
+                        numberED_del.clear();
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -1003,6 +1081,18 @@ public class ControllerFX {
                     textEDUpd2 = addressEB_upd.getText();
                     String textEDUpd3 = new String();
                     textEDUpd3 = phoneDisp_upd.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("UPDATE univer.education_building SET Address='").append(textEDUpd2).append("', Phone_dispatcher='").append(textEDUpd3).append("' WHERE Number_of_the_education_building='").append(textEDUpd1).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+                        NumberED_upd.clear();
+                        addressEB_upd.clear();
+                        phoneDisp_upd.clear();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
             });
 
@@ -1170,8 +1260,41 @@ public class ControllerFX {
                         Statement insertion = DB_CONNECTION.createStatement();
                         int insertionResult = insertion.executeUpdate(queryBuilder.toString());
                         System.out.println("Insert was performed with code: " + insertionResult);
+                        nameCathedraCath.clear();
+                        headDepartment.clear();
+                        phoneDepartment.clear();
+                        numberEDCath.clear();
+                        numberRecordBook.clear();
+                        lastNameStudent.clear();
+                        yearBirth.clear();
+                        nameGroupStu.clear();
+                        nameGroupStuGrou.clear();
+                        nameFacultuStuGro.clear();
+                        nameCourse.clear();
+                        direction.clear();
+                        nameCathedraStuGro.clear();
+                        personalNumberTeacher.clear();
+                        lastNameTeacher.clear();
+                        jobTittle.clear();
+                        degree.clear();
+                        nameCathedraTeach.clear();
+                        phone.clear();
+                        addressTeach.clear();
+                        NumberED.clear();
+                        addressEB.clear();
+                        phoneDisp.clear();
+                        nameFacultyFac.clear();
+                        dean.clear();
+                        phoneDean.clear();
+                        numberStudents.clear();
                     }
                 }
+
+                break;
+            }
+            case UPDATE:{
+
+
                 break;
             }
            /* case DELETE: {
