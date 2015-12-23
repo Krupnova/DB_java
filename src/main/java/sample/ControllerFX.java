@@ -358,9 +358,23 @@ public class ControllerFX {
     @FXML // fx:id="addressTeach"
     private TextField addressTeach; // Value injected by FXMLLoader
 
-    @FXML // fx:id="mainTableView"
-    private TableView<?> mainTableView; // Value injected by FXMLLoader
+    @FXML // fx:id="TableFaculty"
+    private TableView<?> TableFaculty; // Value injected by FXMLLoader
 
+    @FXML // fx:id="TableStudent"
+    private TableView<?> TableStudent; // Value injected by FXMLLoader
+
+    @FXML // fx:id="TableEB"
+    private TableView<?> TableEB; // Value injected by FXMLLoader
+
+    @FXML // fx:id="TableStudentsGroup"
+    private TableView<?> TableStudentsGroup; // Value injected by FXMLLoader
+
+    @FXML // fx:id="TableTeacher"
+    private TableView<?> TableTeacher; // Value injected by FXMLLoader
+
+    @FXML // fx:id="TableCathedra"
+    private TableView<?> TableCathedra; // Value injected by FXMLLoader
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -388,6 +402,7 @@ public class ControllerFX {
         assert phone != null : "fx:id=\"phone\" was not injected: check your FXML file 'sample.fxml'.";
         assert Faculty_del != null : "fx:id=\"Faculty_del\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameCathedraTeach != null : "fx:id=\"nameCathedraTeach\" was not injected: check your FXML file 'sample.fxml'.";
+        assert TableFaculty != null : "fx:id=\"TableFaculty\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameGroupStuGro_upd != null : "fx:id=\"nameGroupStuGro_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert dean != null : "fx:id=\"dean\" was not injected: check your FXML file 'sample.fxml'.";
         assert yearBirth != null : "fx:id=\"yearBirth\" was not injected: check your FXML file 'sample.fxml'.";
@@ -400,8 +415,10 @@ public class ControllerFX {
         assert yearBirth_upd != null : "fx:id=\"yearBirth_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert dean_upd != null : "fx:id=\"dean_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert numberEDCath != null : "fx:id=\"numberEDCath\" was not injected: check your FXML file 'sample.fxml'.";
+        assert TableStudent != null : "fx:id=\"TableStudent\" was not injected: check your FXML file 'sample.fxml'.";
         assert phoneDean != null : "fx:id=\"phoneDean\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameCourse != null : "fx:id=\"nameCourse\" was not injected: check your FXML file 'sample.fxml'.";
+        assert TableEB != null : "fx:id=\"TableEB\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameFacultuStuGro_upd != null : "fx:id=\"nameFacultuStuGro_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameFacultuStuGro != null : "fx:id=\"nameFacultuStuGro\" was not injected: check your FXML file 'sample.fxml'.";
         assert StudentUpdate != null : "fx:id=\"StudentUpdate\" was not injected: check your FXML file 'sample.fxml'.";
@@ -414,6 +431,8 @@ public class ControllerFX {
         assert phone_upd != null : "fx:id=\"phone_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert personalNumberTeacher != null : "fx:id=\"personalNumberTeacher\" was not injected: check your FXML file 'sample.fxml'.";
         assert jobTittle != null : "fx:id=\"jobTittle\" was not injected: check your FXML file 'sample.fxml'.";
+        assert TableStudentsGroup != null : "fx:id=\"TableStudentsGroup\" was not injected: check your FXML file 'sample.fxml'.";
+        assert TableTeacher != null : "fx:id=\"TableTeacher\" was not injected: check your FXML file 'sample.fxml'.";
         assert Faculty_update != null : "fx:id=\"Faculty_update\" was not injected: check your FXML file 'sample.fxml'.";
         assert numberStudents != null : "fx:id=\"numberStudents\" was not injected: check your FXML file 'sample.fxml'.";
         assert Faculty_add != null : "fx:id=\"Faculty_add\" was not injected: check your FXML file 'sample.fxml'.";
@@ -467,6 +486,7 @@ public class ControllerFX {
         assert numberStudents_upd != null : "fx:id=\"numberStudents_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameCourse_upd != null : "fx:id=\"nameCourse_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert addressTeach_upd != null : "fx:id=\"addressTeach_upd\" was not injected: check your FXML file 'sample.fxml'.";
+        assert TableCathedra != null : "fx:id=\"TableCathedra\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameFaculty_del != null : "fx:id=\"nameFaculty_del\" was not injected: check your FXML file 'sample.fxml'.";
         assert numberEDCath_upd != null : "fx:id=\"numberEDCath_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert EB_rb != null : "fx:id=\"EB_rb\" was not injected: check your FXML file 'sample.fxml'.";
@@ -475,7 +495,7 @@ public class ControllerFX {
         assert tab_view != null : "fx:id=\"tab_view\" was not injected: check your FXML file 'sample.fxml'.";
         assert Teacher_add != null : "fx:id=\"Teacher_add\" was not injected: check your FXML file 'sample.fxml'.";
         assert addressTeach != null : "fx:id=\"addressTeach\" was not injected: check your FXML file 'sample.fxml'.";
-        assert mainTableView != null : "fx:id=\"mainTableView\" was not injected: check your FXML file 'sample.fxml'.";
+
 
         DB_CONNECTION = getConnection();
         if (DB_CONNECTION != null)
@@ -536,6 +556,15 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(true);
                 update.setVisible(true);
 
+                TableCathedra.setVisible(true);
+                TableEB.setVisible(false);
+                TableFaculty.setVisible(false);
+                TableStudent.setVisible(false);
+                TableStudentsGroup.setVisible(false);
+                TableTeacher.setVisible(false);
+
+
+
                 //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса для опред талицы
                 add.setOnAction(event2 -> {
 
@@ -559,6 +588,15 @@ public class ControllerFX {
                     //DeleteFromDatabase(SQLTable.CATHEDRA, SQLQueryType.DELETE);
                     String textCathDel = new String();
                     textCathDel = nameCathedra_del.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("DELETE FROM univer.cathedra WHERE Name_of_the_cathedra='").append(textCathDel).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
                 update.setOnAction(event2 -> {
                    // UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
@@ -599,6 +637,13 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
                 update.setVisible(true);
 
+                TableCathedra.setVisible(false);
+                TableEB.setVisible(false);
+                TableFaculty.setVisible(false);
+                TableStudent.setVisible(true);
+                TableStudentsGroup.setVisible(false);
+                TableTeacher.setVisible(false);
+
                 add.setOnAction(event2 -> {
                     //AddToDatabase(SQLTable.STUDENT, SQLQueryType.INSERT);
                     String textStudentAdd1 = new String();
@@ -620,6 +665,15 @@ public class ControllerFX {
                     //DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
                     String textStudentDel = new String();
                     textStudentDel = numberRecordBook_del.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("DELETE FROM univer.student WHERE Number_record_book='").append(textStudentDel).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
                 update.setOnAction(event2 -> {
                     //UpdateDatabase(SQLTable.STUDENT, SQLQueryType.UPDATE);
@@ -659,6 +713,13 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
                 update.setVisible(true);
 
+                TableCathedra.setVisible(false);
+                TableEB.setVisible(false);
+                TableFaculty.setVisible(true);
+                TableStudent.setVisible(false);
+                TableStudentsGroup.setVisible(false);
+                TableTeacher.setVisible(false);
+
                 add.setOnAction(event2 -> {
                    // AddToDatabase(SQLTable.FACULTY, SQLQueryType.INSERT);
                     String textFacultyAdd1 = new String();
@@ -680,6 +741,16 @@ public class ControllerFX {
                     //DeleteFromDatabase(SQLTable.FACULTY, SQLQueryType.DELETE);
                     String textFacultyDel = new String();
                     textFacultyDel = nameFaculty_del.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("DELETE FROM univer.faculty WHERE Name_of_the_faculty='").append(textFacultyDel).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
                 });
                 update.setOnAction(event2 -> {
                     //UpdateDatabase(SQLTable.FACULTY, SQLQueryType.UPDATE);
@@ -719,6 +790,13 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
                 update.setVisible(true);
 
+                TableCathedra.setVisible(false);
+                TableEB.setVisible(false);
+                TableFaculty.setVisible(false);
+                TableStudent.setVisible(false);
+                TableStudentsGroup.setVisible(true);
+                TableTeacher.setVisible(false);
+
                 add.setOnAction(event2 -> {
                   //  AddToDatabase(SQLTable.GROUP, SQLQueryType.INSERT);
                     String textStuGroupAdd1 = new String();
@@ -742,6 +820,15 @@ public class ControllerFX {
                     //DeleteFromDatabase(SQLTable.GROUP, SQLQueryType.DELETE);
                     String textStuGroupDel = new String();
                     textStuGroupDel = nameGroup_del.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("DELETE FROM univer.students_group WHERE Name_of_the_group='").append(textStuGroupDel).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
                 update.setOnAction(event2 -> {
                    // UpdateDatabase(SQLTable.GROUP, SQLQueryType.UPDATE);
@@ -783,6 +870,13 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
                 update.setVisible(true);
 
+                TableCathedra.setVisible(false);
+                TableEB.setVisible(false);
+                TableFaculty.setVisible(false);
+                TableStudent.setVisible(false);
+                TableStudentsGroup.setVisible(false);
+                TableTeacher.setVisible(true);
+
                 add.setOnAction(event2 -> {
                     //AddToDatabase(SQLTable.TEACHER, SQLQueryType.INSERT);
                     String textTeacherAdd1 = new String();
@@ -810,6 +904,15 @@ public class ControllerFX {
                     //DeleteFromDatabase(SQLTable.TEACHER, SQLQueryType.DELETE);
                     String textTeacherDel = new String();
                     textTeacherDel = personalNumberTeach_del.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("DELETE FROM univer.teacher WHERE Personal_number_teacher='").append(textTeacherDel).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
                 update.setOnAction(event2 -> {
                    // UpdateDatabase(SQLTable.TEACHER, SQLQueryType.UPDATE);
@@ -855,6 +958,12 @@ public class ControllerFX {
                 CathedraUpdate.setVisible(false);
                 update.setVisible(true);
 
+                TableCathedra.setVisible(false);
+                TableEB.setVisible(true);
+                TableFaculty.setVisible(false);
+                TableStudent.setVisible(false);
+                TableStudentsGroup.setVisible(false);
+                TableTeacher.setVisible(false);
                 add.setOnAction(event2 -> {
 
                    // AddToDatabase(SQLTable.BUILDING, SQLQueryType.INSERT);
@@ -876,6 +985,15 @@ public class ControllerFX {
                     //DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
                     String textEDDel = new String();
                     textEDDel = numberED_del.getText();
+                    StringBuilder queryBuilder = new StringBuilder();
+                    queryBuilder.append("DELETE FROM univer.education_building WHERE Number_of_the_education_building='").append(textEDDel).append("';");
+                    try {
+                        Statement insertion = DB_CONNECTION.createStatement();
+                        insertion.executeUpdate(queryBuilder.toString());
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 });
                 update.setOnAction(event2 -> {
                     //UpdateDatabase(SQLTable.BUILDING, SQLQueryType.UPDATE);
@@ -898,23 +1016,15 @@ public class ControllerFX {
 
     private void AddToDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
-       /* String test = new String();
-        test = nameCathedraCath.getText();
-        System.out.println(test); */
-
 
     }
 
     private void DeleteFromDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
-
-
     }
 
     private void UpdateDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
-
-
     }
 
     /*
@@ -1064,6 +1174,38 @@ public class ControllerFX {
                 }
                 break;
             }
+           /* case DELETE: {
+
+                ArrayList<SQLTableColumnsInfo> columnsData = getColumnsData(args[0]);
+
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("DELETE FROM ").append(DB_SCHEMA_NAME).append(".").append(args[0]).append(" WHERE ");
+                queryBuilder.append(columnsData.get(0).getColumnName()).append("='");
+                if (columnsData.get(0).getColumnType().contains("varchar")) {
+                    queryBuilder.append(
+                            getSQLString(
+                                    getVarchar255Arg(
+                                            args[1],
+                                            columnsData.get(0).getIsPrimary()
+                                    )
+                            )
+                    );
+                } else {
+                    queryBuilder.append(
+                            getInt11Arg(
+                                    args[1],
+                                    columnsData.get(0).getIsPrimary()
+                            )
+                    );
+                }
+                queryBuilder.append("' ;");
+
+                Statement insertion = DB_CONNECTION.createStatement();
+                int insertionResult = insertion.executeUpdate(queryBuilder.toString());
+                System.out.println("Delete was performed with code: " + insertionResult);
+                break;
+            }*/
+
         }
 
 
