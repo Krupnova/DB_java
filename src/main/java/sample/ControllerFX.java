@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.Tables.Cathedra;
@@ -378,7 +379,7 @@ public class ControllerFX {
     private TableView<?> TableTeacher; // Value injected by FXMLLoader
 
     @FXML // fx:id="TableCathedra"
-    private TableView<Object> TableCathedra; // Value injected by FXMLLoader
+    private TableView<Cathedra> TableCathedra; // Value injected by FXMLLoader
 
     @FXML
     private TableColumn<?, ?> ColumnStudent1;
@@ -393,16 +394,16 @@ public class ControllerFX {
     private TableColumn<?, ?> ColumnStudent4;
 
     @FXML
-    private TableColumn<?, ?> ColumnCath4;
+    private TableColumn<Cathedra, Integer> ColumnCath4;
 
     @FXML
     private TableColumn<Cathedra, String> ColumnCath1;
 
     @FXML
-    private TableColumn<?, ?> ColumnCath3;
+    private TableColumn<Cathedra, Integer> ColumnCath3;
 
     @FXML
-    private TableColumn<?, ?> ColumnCath2;
+    private TableColumn<Cathedra, String> ColumnCath2;
 
     @FXML
     private TableColumn<?, ?> ColumnStudentsGroup4;
@@ -608,6 +609,11 @@ public class ControllerFX {
         assert Teacher_add != null : "fx:id=\"Teacher_add\" was not injected: check your FXML file 'sample.fxml'.";
         assert addressTeach != null : "fx:id=\"addressTeach\" was not injected: check your FXML file 'sample.fxml'.";
 
+        //System.out.println(SQLTable.CATHEDRA.name());
+        ColumnCath1.setCellValueFactory(new PropertyValueFactory<>("name_cathedra"));
+        ColumnCath2.setCellValueFactory(new PropertyValueFactory<>("head_department"));
+        ColumnCath3.setCellValueFactory(new PropertyValueFactory<>("phone_department"));
+        ColumnCath4.setCellValueFactory(new PropertyValueFactory<>("number_EB"));
 
         DB_CONNECTION = getConnection();
         if (DB_CONNECTION != null)
@@ -643,44 +649,44 @@ public class ControllerFX {
                 }*/
 
 
-            cathedra_rb.setOnAction(event1 -> {
-                EDAdd.setVisible(false);
-                StudentAdd.setVisible(false);
-                StudentsGroupAdd.setVisible(false);
-                TeacherAdd.setVisible(false);
-                FacultyAdd.setVisible(false);
-                CathedraAdd.setVisible(true);
-                add.setVisible(true);
+        cathedra_rb.setOnAction(event1 -> {
+            EDAdd.setVisible(false);
+            StudentAdd.setVisible(false);
+            StudentsGroupAdd.setVisible(false);
+            TeacherAdd.setVisible(false);
+            FacultyAdd.setVisible(false);
+            CathedraAdd.setVisible(true);
+            add.setVisible(true);
 
-                EDDel.setVisible(false);
-                StudentDel.setVisible(false);
-                StudentsGroupDel.setVisible(false);
-                TeacherDel.setVisible(false);
-                FacultyDel.setVisible(false);
-                CathedraDel.setVisible(true);
-                delete.setVisible(true);
+            EDDel.setVisible(false);
+            StudentDel.setVisible(false);
+            StudentsGroupDel.setVisible(false);
+            TeacherDel.setVisible(false);
+            FacultyDel.setVisible(false);
+            CathedraDel.setVisible(true);
+            delete.setVisible(true);
 
-                EDUpdate.setVisible(false);
-                StudentUpdate.setVisible(false);
-                StudentsGroupUpdate.setVisible(false);
-                TeacherUpdate.setVisible(false);
-                FacultyUpdate.setVisible(false);
-                CathedraUpdate.setVisible(true);
-                update.setVisible(true);
+            EDUpdate.setVisible(false);
+            StudentUpdate.setVisible(false);
+            StudentsGroupUpdate.setVisible(false);
+            TeacherUpdate.setVisible(false);
+            FacultyUpdate.setVisible(false);
+            CathedraUpdate.setVisible(true);
+            update.setVisible(true);
 
-                TableCathedra.setVisible(true);
-                TableEB.setVisible(false);
-                TableFaculty.setVisible(false);
-                TableStudent.setVisible(false);
-                TableStudentsGroup.setVisible(false);
-                TableTeacher.setVisible(false);
+            TableCathedra.setVisible(true);
+            TableEB.setVisible(false);
+            TableFaculty.setVisible(false);
+            TableStudent.setVisible(false);
+            TableStudentsGroup.setVisible(false);
+            TableTeacher.setVisible(false);
 
 
-                try {
-                    getResultFromDB(SQLQueryType.SELECT, "cathedra");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            try {
+                SetTableValues(SQLTable.CATHEDRA);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
                 /*result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]
                         + " WHERE " + args[1] + " = " + args[2]);*/
 
@@ -688,545 +694,545 @@ public class ControllerFX {
                 ColumnCath1.setCellValueFactory(new PropertyValueFactory<Cathedra, String>("name_cathedra"));
                 TableCathedra.setItems(usersData.add("qq"),);*/
 
-                //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса для опред талицы
-                add.setOnAction(event2 -> {
+            //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса для опред талицы
+            add.setOnAction(event2 -> {
 
-                    // AddToDatabase(SQLTable.CATHEDRA, SQLQueryType.INSERT);
-                    String textCathAdd1 = new String();
-                    textCathAdd1 = nameCathedraCath.getText();
-                    String textCathAdd2 = new String();
-                    textCathAdd2 = headDepartment.getText();
-                    String textCathAdd3 = "";
-                    textCathAdd3 = phoneDepartment.getText();
-                    String textCathAdd4 = new String();
-                    textCathAdd4 = numberEDCath.getText();
+                // AddToDatabase(SQLTable.CATHEDRA, SQLQueryType.INSERT);
+                String textCathAdd1 = new String();
+                textCathAdd1 = nameCathedraCath.getText();
+                String textCathAdd2 = new String();
+                textCathAdd2 = headDepartment.getText();
+                String textCathAdd3 = "";
+                textCathAdd3 = phoneDepartment.getText();
+                String textCathAdd4 = new String();
+                textCathAdd4 = numberEDCath.getText();
 
-                    try {
-                        getResultFromDB(SQLQueryType.INSERT, "cathedra", textCathAdd1, textCathAdd2, textCathAdd3, textCathAdd4);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                delete.setOnAction(event2 -> {
-                    //DeleteFromDatabase(SQLTable.CATHEDRA, SQLQueryType.DELETE);
-                    String textCathDel = new String();
-                    textCathDel = nameCathedra_del.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("DELETE FROM univer.cathedra WHERE Name_of_the_cathedra='").append(textCathDel).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        nameCathedra_del.clear();
+                try {
+                    getResultFromDB(SQLQueryType.INSERT, "cathedra", textCathAdd1, textCathAdd2, textCathAdd3, textCathAdd4);
+                    SetTableValues(SQLTable.CATHEDRA);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            delete.setOnAction(event2 -> {
+                //DeleteFromDatabase(SQLTable.CATHEDRA, SQLQueryType.DELETE);
+                String textCathDel = new String();
+                textCathDel = nameCathedra_del.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("DELETE FROM univer.cathedra WHERE Name_of_the_cathedra='").append(textCathDel).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    nameCathedra_del.clear();
 
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
-                update.setOnAction(event2 -> {
-                   // UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
-                    String textCathUpd1 = new String();
-                    textCathUpd1 = nameCathedraCath_upd.getText();
-                    String textCathUpd2 = new String();
-                    textCathUpd2 = headDepartment_upd.getText();
-                    String textCathUpd3 = new String();
-                    textCathUpd3 = phoneDepartment_upd.getText();
-                    String textCathUpd4 = new String();
-                    textCathUpd4 = numberEDCath_upd.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("UPDATE univer.cathedra SET Head_of_department='").append(textCathUpd2).append("', Phone_of_the_department='").append(textCathUpd3).append("', Number_of_the_education_building='").append(textCathUpd4).append("' WHERE Name_of_the_cathedra='").append(textCathUpd1).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        nameCathedraCath_upd.clear();
-                        headDepartment_upd.clear();
-                        phoneDepartment_upd.clear();
-                        numberEDCath_upd.clear();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            update.setOnAction(event2 -> {
+                // UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
+                String textCathUpd1 = new String();
+                textCathUpd1 = nameCathedraCath_upd.getText();
+                String textCathUpd2 = new String();
+                textCathUpd2 = headDepartment_upd.getText();
+                String textCathUpd3 = new String();
+                textCathUpd3 = phoneDepartment_upd.getText();
+                String textCathUpd4 = new String();
+                textCathUpd4 = numberEDCath_upd.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("UPDATE univer.cathedra SET Head_of_department='").append(textCathUpd2).append("', Phone_of_the_department='").append(textCathUpd3).append("', Number_of_the_education_building='").append(textCathUpd4).append("' WHERE Name_of_the_cathedra='").append(textCathUpd1).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    nameCathedraCath_upd.clear();
+                    headDepartment_upd.clear();
+                    phoneDepartment_upd.clear();
+                    numberEDCath_upd.clear();
 
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-
-                });
 
             });
 
-            student_rb.setOnAction(event1 -> {
-                EDAdd.setVisible(false);
-                StudentAdd.setVisible(true);
-                StudentsGroupAdd.setVisible(false);
-                TeacherAdd.setVisible(false);
-                FacultyAdd.setVisible(false);
-                CathedraAdd.setVisible(false);
-                add.setVisible(true);
+        });
 
-                EDDel.setVisible(false);
-                StudentDel.setVisible(true);
-                StudentsGroupDel.setVisible(false);
-                TeacherDel.setVisible(false);
-                FacultyDel.setVisible(false);
-                CathedraDel.setVisible(false);
-                delete.setVisible(true);
+        student_rb.setOnAction(event1 -> {
+            EDAdd.setVisible(false);
+            StudentAdd.setVisible(true);
+            StudentsGroupAdd.setVisible(false);
+            TeacherAdd.setVisible(false);
+            FacultyAdd.setVisible(false);
+            CathedraAdd.setVisible(false);
+            add.setVisible(true);
 
-                EDUpdate.setVisible(false);
-                StudentUpdate.setVisible(true);
-                StudentsGroupUpdate.setVisible(false);
-                TeacherUpdate.setVisible(false);
-                FacultyUpdate.setVisible(false);
-                CathedraUpdate.setVisible(false);
-                update.setVisible(true);
+            EDDel.setVisible(false);
+            StudentDel.setVisible(true);
+            StudentsGroupDel.setVisible(false);
+            TeacherDel.setVisible(false);
+            FacultyDel.setVisible(false);
+            CathedraDel.setVisible(false);
+            delete.setVisible(true);
 
-                TableCathedra.setVisible(false);
-                TableEB.setVisible(false);
-                TableFaculty.setVisible(false);
-                TableStudent.setVisible(true);
-                TableStudentsGroup.setVisible(false);
-                TableTeacher.setVisible(false);
+            EDUpdate.setVisible(false);
+            StudentUpdate.setVisible(true);
+            StudentsGroupUpdate.setVisible(false);
+            TeacherUpdate.setVisible(false);
+            FacultyUpdate.setVisible(false);
+            CathedraUpdate.setVisible(false);
+            update.setVisible(true);
 
-                add.setOnAction(event2 -> {
-                    //AddToDatabase(SQLTable.STUDENT, SQLQueryType.INSERT);
-                    String textStudentAdd1 = new String();
-                    textStudentAdd1 = numberRecordBook.getText();
-                    String textStudentAdd2 = new String();
-                    textStudentAdd2 = lastNameStudent.getText();
-                    String textStudentAdd3 = new String();
-                    textStudentAdd3 = yearBirth.getText();
-                    String textStudentAdd4 = new String();
-                    textStudentAdd4 = nameGroupStu.getText();
+            TableCathedra.setVisible(false);
+            TableEB.setVisible(false);
+            TableFaculty.setVisible(false);
+            TableStudent.setVisible(true);
+            TableStudentsGroup.setVisible(false);
+            TableTeacher.setVisible(false);
 
-                    try {
-                        getResultFromDB (SQLQueryType.INSERT, "student", textStudentAdd1,textStudentAdd2, textStudentAdd3, textStudentAdd4);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                delete.setOnAction(event2 -> {
-                    //DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
-                    String textStudentDel = new String();
-                    textStudentDel = numberRecordBook_del.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("DELETE FROM univer.student WHERE Number_record_book='").append(textStudentDel).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        numberRecordBook_del.clear();
+            add.setOnAction(event2 -> {
+                //AddToDatabase(SQLTable.STUDENT, SQLQueryType.INSERT);
+                String textStudentAdd1 = new String();
+                textStudentAdd1 = numberRecordBook.getText();
+                String textStudentAdd2 = new String();
+                textStudentAdd2 = lastNameStudent.getText();
+                String textStudentAdd3 = new String();
+                textStudentAdd3 = yearBirth.getText();
+                String textStudentAdd4 = new String();
+                textStudentAdd4 = nameGroupStu.getText();
 
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
-                update.setOnAction(event2 -> {
-                    //UpdateDatabase(SQLTable.STUDENT, SQLQueryType.UPDATE);
-                    String textStudentUpd1 = new String();
-                    textStudentUpd1 = numberRecordBook_upd.getText();
-                    String textStudentUpd2 = new String();
-                    textStudentUpd2 = lastNameStudent_upd.getText();
-                    String textStudentUpd3 = new String();
-                    textStudentUpd3 = yearBirth_upd.getText();
-                    String textStudentUpd4 = new String();
-                    textStudentUpd4 = nameGroupStu_upd.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("UPDATE univer.student SET Last_name='").append(textStudentUpd2).append("', Year_of_birth='").append(textStudentUpd3).append("', Name_of_the_group='").append(textStudentUpd4).append("' WHERE Number_record_book='").append(textStudentUpd1).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        numberRecordBook_upd.clear();
-                        lastNameStudent_upd.clear();
-                        yearBirth_upd.clear();
-                        nameGroupStu_upd.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
+                try {
+                    getResultFromDB(SQLQueryType.INSERT, "student", textStudentAdd1, textStudentAdd2, textStudentAdd3, textStudentAdd4);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
+            delete.setOnAction(event2 -> {
+                //DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
+                String textStudentDel = new String();
+                textStudentDel = numberRecordBook_del.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("DELETE FROM univer.student WHERE Number_record_book='").append(textStudentDel).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    numberRecordBook_del.clear();
 
-            faculty_rb.setOnAction(event1 -> {
-                EDAdd.setVisible(false);
-                StudentAdd.setVisible(false);
-                StudentsGroupAdd.setVisible(false);
-                TeacherAdd.setVisible(false);
-                FacultyAdd.setVisible(true);
-                CathedraAdd.setVisible(false);
-                add.setVisible(true);
-
-                EDDel.setVisible(false);
-                StudentDel.setVisible(false);
-                StudentsGroupDel.setVisible(false);
-                TeacherDel.setVisible(false);
-                FacultyDel.setVisible(true);
-                CathedraDel.setVisible(false);
-                delete.setVisible(true);
-
-                EDUpdate.setVisible(false);
-                StudentUpdate.setVisible(false);
-                StudentsGroupUpdate.setVisible(false);
-                TeacherUpdate.setVisible(false);
-                FacultyUpdate.setVisible(true);
-                CathedraUpdate.setVisible(false);
-                update.setVisible(true);
-
-                TableCathedra.setVisible(false);
-                TableEB.setVisible(false);
-                TableFaculty.setVisible(true);
-                TableStudent.setVisible(false);
-                TableStudentsGroup.setVisible(false);
-                TableTeacher.setVisible(false);
-
-                add.setOnAction(event2 -> {
-                   // AddToDatabase(SQLTable.FACULTY, SQLQueryType.INSERT);
-                    String textFacultyAdd1 = new String();
-                    textFacultyAdd1 = nameFacultyFac.getText();
-                    String textFacultyAdd2 = new String();
-                    textFacultyAdd2 = dean.getText();
-                    String textFacultyAdd3 = new String();
-                    textFacultyAdd3 = phoneDean.getText();
-                    String textFacultyAdd4 = new String();
-                    textFacultyAdd4 = numberStudents.getText();
-
-                    try {
-                        getResultFromDB (SQLQueryType.INSERT, "faculty", textFacultyAdd1,textFacultyAdd2, textFacultyAdd3, textFacultyAdd4);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                delete.setOnAction(event2 -> {
-                    //DeleteFromDatabase(SQLTable.FACULTY, SQLQueryType.DELETE);
-                    String textFacultyDel = new String();
-                    textFacultyDel = nameFaculty_del.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("DELETE FROM univer.faculty WHERE Name_of_the_faculty='").append(textFacultyDel).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        nameFaculty_del.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-                });
-                update.setOnAction(event2 -> {
-                    //UpdateDatabase(SQLTable.FACULTY, SQLQueryType.UPDATE);
-                    String textFacultyUpd1 = new String();
-                    textFacultyUpd1 = nameFacultyFac_upd.getText();
-                    String textFacultyUpd2 = new String();
-                    textFacultyUpd2 = dean_upd.getText();
-                    String textFacultyUpd3 = new String();
-                    textFacultyUpd3 = phoneDean_upd.getText();
-                    String textFacultyUpd4 = new String();
-                    textFacultyUpd4 = numberStudents_upd.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("UPDATE univer.faculty SET Dean='").append(textFacultyUpd2).append("', Phone_dean='").append(textFacultyUpd3).append("', Number_of_students_at_the_faculty='").append(textFacultyUpd4).append("' WHERE Name_of_the_faculty='").append(textFacultyUpd1).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        nameFacultyFac_upd.clear();
-                        dean_upd.clear();
-                        phoneDean_upd.clear();
-                        numberStudents_upd.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             });
+            update.setOnAction(event2 -> {
+                //UpdateDatabase(SQLTable.STUDENT, SQLQueryType.UPDATE);
+                String textStudentUpd1 = new String();
+                textStudentUpd1 = numberRecordBook_upd.getText();
+                String textStudentUpd2 = new String();
+                textStudentUpd2 = lastNameStudent_upd.getText();
+                String textStudentUpd3 = new String();
+                textStudentUpd3 = yearBirth_upd.getText();
+                String textStudentUpd4 = new String();
+                textStudentUpd4 = nameGroupStu_upd.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("UPDATE univer.student SET Last_name='").append(textStudentUpd2).append("', Year_of_birth='").append(textStudentUpd3).append("', Name_of_the_group='").append(textStudentUpd4).append("' WHERE Number_record_book='").append(textStudentUpd1).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    numberRecordBook_upd.clear();
+                    lastNameStudent_upd.clear();
+                    yearBirth_upd.clear();
+                    nameGroupStu_upd.clear();
 
-            studentsGroup_rb.setOnAction(event1 -> {
-                EDAdd.setVisible(false);
-                StudentAdd.setVisible(false);
-                StudentsGroupAdd.setVisible(true);
-                TeacherAdd.setVisible(false);
-                FacultyAdd.setVisible(false);
-                CathedraAdd.setVisible(false);
-                add.setVisible(true);
-
-                EDDel.setVisible(false);
-                StudentDel.setVisible(false);
-                StudentsGroupDel.setVisible(true);
-                TeacherDel.setVisible(false);
-                FacultyDel.setVisible(false);
-                CathedraDel.setVisible(false);
-                delete.setVisible(true);
-
-                EDUpdate.setVisible(false);
-                StudentUpdate.setVisible(false);
-                StudentsGroupUpdate.setVisible(true);
-                TeacherUpdate.setVisible(false);
-                FacultyUpdate.setVisible(false);
-                CathedraUpdate.setVisible(false);
-                update.setVisible(true);
-
-                TableCathedra.setVisible(false);
-                TableEB.setVisible(false);
-                TableFaculty.setVisible(false);
-                TableStudent.setVisible(false);
-                TableStudentsGroup.setVisible(true);
-                TableTeacher.setVisible(false);
-
-                add.setOnAction(event2 -> {
-                  //  AddToDatabase(SQLTable.GROUP, SQLQueryType.INSERT);
-                    String textStuGroupAdd1 = new String();
-                    textStuGroupAdd1 = nameGroupStuGrou.getText();
-                    String textStuGroupAdd2 = new String();
-                    textStuGroupAdd2 = nameFacultuStuGro.getText();
-                    String textStuGroupAdd3 = new String();
-                    textStuGroupAdd3 = nameCourse.getText();
-                    String textStuGroupAdd4 = new String();
-                    textStuGroupAdd4 = direction.getText();
-                    String textStuGroupAdd5 = new String();
-                    textStuGroupAdd5 = nameCathedraStuGro.getText();
-
-                    try {
-                        getResultFromDB (SQLQueryType.INSERT, "students_group", textStuGroupAdd1,textStuGroupAdd2, textStuGroupAdd3, textStuGroupAdd4, textStuGroupAdd5);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                delete.setOnAction(event2 -> {
-                    //DeleteFromDatabase(SQLTable.GROUP, SQLQueryType.DELETE);
-                    String textStuGroupDel = new String();
-                    textStuGroupDel = nameGroup_del.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("DELETE FROM univer.students_group WHERE Name_of_the_group='").append(textStuGroupDel).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        nameGroup_del.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
-                update.setOnAction(event2 -> {
-                   // UpdateDatabase(SQLTable.GROUP, SQLQueryType.UPDATE);
-                    String textStuGroupUpd1 = new String();
-                    textStuGroupUpd1 = nameGroupStuGro_upd.getText();
-                    String textStuGroupUpd2 = new String();
-                    textStuGroupUpd2 = nameFacultuStuGro_upd.getText();
-                    String textStuGroupUpd3 = new String();
-                    textStuGroupUpd3 = nameCourse_upd.getText();
-                    String textStuGroupUpd4 = new String();
-                    textStuGroupUpd4 = direction_upd.getText();
-                    String textStuGroupUpd5 = new String();
-                    textStuGroupUpd5 = nameCathedraStuGro_upd.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("UPDATE univer.students_group SET Name_of_the_faculty='").append(textStuGroupUpd2).append("', Number_of_course='").append(textStuGroupUpd3).append("', Direction='").append(textStuGroupUpd4).append("', Name_of_cathedra='").append(textStuGroupUpd5).append("' WHERE Name_of_the_group='").append(textStuGroupUpd1).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        nameGroupStuGro_upd.clear();
-                        nameFacultuStuGro_upd.clear();
-                        nameCourse_upd.clear();
-                        direction_upd.clear();
-                        nameCathedraStuGro_upd.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             });
+        });
 
-            teacher_rb.setOnAction(event1 -> {
-                EDAdd.setVisible(false);
-                StudentAdd.setVisible(false);
-                StudentsGroupAdd.setVisible(false);
-                TeacherAdd.setVisible(true);
-                FacultyAdd.setVisible(false);
-                CathedraAdd.setVisible(false);
-                add.setVisible(true);
+        faculty_rb.setOnAction(event1 -> {
+            EDAdd.setVisible(false);
+            StudentAdd.setVisible(false);
+            StudentsGroupAdd.setVisible(false);
+            TeacherAdd.setVisible(false);
+            FacultyAdd.setVisible(true);
+            CathedraAdd.setVisible(false);
+            add.setVisible(true);
 
-                EDDel.setVisible(false);
-                StudentDel.setVisible(false);
-                StudentsGroupDel.setVisible(false);
-                TeacherDel.setVisible(true);
-                FacultyDel.setVisible(false);
-                CathedraDel.setVisible(false);
-                delete.setVisible(true);
+            EDDel.setVisible(false);
+            StudentDel.setVisible(false);
+            StudentsGroupDel.setVisible(false);
+            TeacherDel.setVisible(false);
+            FacultyDel.setVisible(true);
+            CathedraDel.setVisible(false);
+            delete.setVisible(true);
 
-                EDUpdate.setVisible(false);
-                StudentUpdate.setVisible(false);
-                StudentsGroupUpdate.setVisible(false);
-                TeacherUpdate.setVisible(true);
-                FacultyUpdate.setVisible(false);
-                CathedraUpdate.setVisible(false);
-                update.setVisible(true);
+            EDUpdate.setVisible(false);
+            StudentUpdate.setVisible(false);
+            StudentsGroupUpdate.setVisible(false);
+            TeacherUpdate.setVisible(false);
+            FacultyUpdate.setVisible(true);
+            CathedraUpdate.setVisible(false);
+            update.setVisible(true);
 
-                TableCathedra.setVisible(false);
-                TableEB.setVisible(false);
-                TableFaculty.setVisible(false);
-                TableStudent.setVisible(false);
-                TableStudentsGroup.setVisible(false);
-                TableTeacher.setVisible(true);
+            TableCathedra.setVisible(false);
+            TableEB.setVisible(false);
+            TableFaculty.setVisible(true);
+            TableStudent.setVisible(false);
+            TableStudentsGroup.setVisible(false);
+            TableTeacher.setVisible(false);
 
-                add.setOnAction(event2 -> {
-                    //AddToDatabase(SQLTable.TEACHER, SQLQueryType.INSERT);
-                    String textTeacherAdd1 = new String();
-                    textTeacherAdd1 = personalNumberTeacher.getText();
-                    String textTeacherAdd2 = new String();
-                    textTeacherAdd2 = lastNameTeacher.getText();
-                    String textTeacherAdd3 = new String();
-                    textTeacherAdd3 = jobTittle.getText();
-                    String textTeacherAdd4 = new String();
-                    textTeacherAdd4 = degree.getText();
-                    String textTeacherAdd5 = new String();
-                    textTeacherAdd5 = nameCathedraTeach.getText();
-                    String textTeacherAdd6 = new String();
-                    textTeacherAdd6 = phone.getText();
-                    String textTeacherAdd7 = new String();
-                    textTeacherAdd7 = addressTeach.getText();
+            add.setOnAction(event2 -> {
+                // AddToDatabase(SQLTable.FACULTY, SQLQueryType.INSERT);
+                String textFacultyAdd1 = new String();
+                textFacultyAdd1 = nameFacultyFac.getText();
+                String textFacultyAdd2 = new String();
+                textFacultyAdd2 = dean.getText();
+                String textFacultyAdd3 = new String();
+                textFacultyAdd3 = phoneDean.getText();
+                String textFacultyAdd4 = new String();
+                textFacultyAdd4 = numberStudents.getText();
 
-                    try {
-                        getResultFromDB (SQLQueryType.INSERT, "teacher", textTeacherAdd1,textTeacherAdd2, textTeacherAdd3, textTeacherAdd4, textTeacherAdd5, textTeacherAdd6, textTeacherAdd7);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                delete.setOnAction(event2 -> {
-                    //DeleteFromDatabase(SQLTable.TEACHER, SQLQueryType.DELETE);
-                    String textTeacherDel = new String();
-                    textTeacherDel = personalNumberTeach_del.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("DELETE FROM univer.teacher WHERE Personal_number_teacher='").append(textTeacherDel).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        personalNumberTeach_del.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
-                update.setOnAction(event2 -> {
-                   // UpdateDatabase(SQLTable.TEACHER, SQLQueryType.UPDATE);
-                    String textTeacherUpd1 = new String();
-                    textTeacherUpd1 = personalNumberTeacher_upd.getText();
-                    String textTeacherUpd2 = new String();
-                    textTeacherUpd2 = lastNameTeacher_upd.getText();
-                    String textTeacherUpd3 = new String();
-                    textTeacherUpd3 = jobTittle_upd.getText();
-                    String textTeacherUpd4 = new String();
-                    textTeacherUpd4 = degree_upd.getText();
-                    String textTeacherUpd5 = new String();
-                    textTeacherUpd5 = nameCathedraTeach_upd.getText();
-                    String textTeacherUpd6 = new String();
-                    textTeacherUpd6 = phone_upd.getText();
-                    String textTeacherUpd7 = new String();
-                    textTeacherUpd7 = addressTeach_upd.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("UPDATE univer.teacher SET Last_name='").append(textTeacherUpd2).append("', Job_title='").append(textTeacherUpd3).append("', Degree='").append(textTeacherUpd4).append("', Name_of_the_cathedra='").append(textTeacherUpd5).append("', Phone='").append(textTeacherUpd6).append("', Address='").append(textTeacherUpd6).append("' WHERE Personal_number_teacher='").append(textTeacherUpd1).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        personalNumberTeacher_upd.clear();
-                        lastNameTeacher_upd.clear();
-                        jobTittle_upd.clear();
-                        degree_upd.clear();
-                        nameCathedraTeach_upd.clear();
-                        phone_upd.clear();
-                        addressTeach_upd.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
+                try {
+                    getResultFromDB(SQLQueryType.INSERT, "faculty", textFacultyAdd1, textFacultyAdd2, textFacultyAdd3, textFacultyAdd4);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
+            delete.setOnAction(event2 -> {
+                //DeleteFromDatabase(SQLTable.FACULTY, SQLQueryType.DELETE);
+                String textFacultyDel = new String();
+                textFacultyDel = nameFaculty_del.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("DELETE FROM univer.faculty WHERE Name_of_the_faculty='").append(textFacultyDel).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    nameFaculty_del.clear();
 
-            EB_rb.setOnAction(event1 -> {
-                EDAdd.setVisible(true);
-                StudentAdd.setVisible(false);
-                StudentsGroupAdd.setVisible(false);
-                TeacherAdd.setVisible(false);
-                FacultyAdd.setVisible(false);
-                CathedraAdd.setVisible(false);
-                add.setVisible(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-                EDDel.setVisible(true);
-                StudentDel.setVisible(false);
-                StudentsGroupDel.setVisible(false);
-                TeacherDel.setVisible(false);
-                FacultyDel.setVisible(false);
-                CathedraDel.setVisible(false);
-                delete.setVisible(true);
-
-                EDUpdate.setVisible(true);
-                StudentUpdate.setVisible(false);
-                StudentsGroupUpdate.setVisible(false);
-                TeacherUpdate.setVisible(false);
-                FacultyUpdate.setVisible(false);
-                CathedraUpdate.setVisible(false);
-                update.setVisible(true);
-
-                TableCathedra.setVisible(false);
-                TableEB.setVisible(true);
-                TableFaculty.setVisible(false);
-                TableStudent.setVisible(false);
-                TableStudentsGroup.setVisible(false);
-                TableTeacher.setVisible(false);
-                add.setOnAction(event2 -> {
-
-                   // AddToDatabase(SQLTable.BUILDING, SQLQueryType.INSERT);
-                    String textEDAdd1 = new String();
-                    textEDAdd1 = NumberED.getText();
-                    String textEDAdd2 = new String();
-                    textEDAdd2 = addressEB.getText();
-                    String textEDAdd3 = new String();
-                    textEDAdd3 = phoneDisp.getText();
-
-                    try {
-                        getResultFromDB (SQLQueryType.INSERT, "education_building", textEDAdd1,textEDAdd2, textEDAdd3);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                });
-                delete.setOnAction(event2 -> {
-                    //DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
-                    String textEDDel = new String();
-                    textEDDel = numberED_del.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("DELETE FROM univer.education_building WHERE Number_of_the_education_building='").append(textEDDel).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        numberED_del.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
-                update.setOnAction(event2 -> {
-                    //UpdateDatabase(SQLTable.BUILDING, SQLQueryType.UPDATE);
-                    String textEDUpd1 = new String();
-                    textEDUpd1 = NumberED_upd.getText();
-                    String textEDUpd2 = new String();
-                    textEDUpd2 = addressEB_upd.getText();
-                    String textEDUpd3 = new String();
-                    textEDUpd3 = phoneDisp_upd.getText();
-                    StringBuilder queryBuilder = new StringBuilder();
-                    queryBuilder.append("UPDATE univer.education_building SET Address='").append(textEDUpd2).append("', Phone_dispatcher='").append(textEDUpd3).append("' WHERE Number_of_the_education_building='").append(textEDUpd1).append("';");
-                    try {
-                        Statement insertion = DB_CONNECTION.createStatement();
-                        insertion.executeUpdate(queryBuilder.toString());
-                        NumberED_upd.clear();
-                        addressEB_upd.clear();
-                        phoneDisp_upd.clear();
-
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
             });
+            update.setOnAction(event2 -> {
+                //UpdateDatabase(SQLTable.FACULTY, SQLQueryType.UPDATE);
+                String textFacultyUpd1 = new String();
+                textFacultyUpd1 = nameFacultyFac_upd.getText();
+                String textFacultyUpd2 = new String();
+                textFacultyUpd2 = dean_upd.getText();
+                String textFacultyUpd3 = new String();
+                textFacultyUpd3 = phoneDean_upd.getText();
+                String textFacultyUpd4 = new String();
+                textFacultyUpd4 = numberStudents_upd.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("UPDATE univer.faculty SET Dean='").append(textFacultyUpd2).append("', Phone_dean='").append(textFacultyUpd3).append("', Number_of_students_at_the_faculty='").append(textFacultyUpd4).append("' WHERE Name_of_the_faculty='").append(textFacultyUpd1).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    nameFacultyFac_upd.clear();
+                    dean_upd.clear();
+                    phoneDean_upd.clear();
+                    numberStudents_upd.clear();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+
+        studentsGroup_rb.setOnAction(event1 -> {
+            EDAdd.setVisible(false);
+            StudentAdd.setVisible(false);
+            StudentsGroupAdd.setVisible(true);
+            TeacherAdd.setVisible(false);
+            FacultyAdd.setVisible(false);
+            CathedraAdd.setVisible(false);
+            add.setVisible(true);
+
+            EDDel.setVisible(false);
+            StudentDel.setVisible(false);
+            StudentsGroupDel.setVisible(true);
+            TeacherDel.setVisible(false);
+            FacultyDel.setVisible(false);
+            CathedraDel.setVisible(false);
+            delete.setVisible(true);
+
+            EDUpdate.setVisible(false);
+            StudentUpdate.setVisible(false);
+            StudentsGroupUpdate.setVisible(true);
+            TeacherUpdate.setVisible(false);
+            FacultyUpdate.setVisible(false);
+            CathedraUpdate.setVisible(false);
+            update.setVisible(true);
+
+            TableCathedra.setVisible(false);
+            TableEB.setVisible(false);
+            TableFaculty.setVisible(false);
+            TableStudent.setVisible(false);
+            TableStudentsGroup.setVisible(true);
+            TableTeacher.setVisible(false);
+
+            add.setOnAction(event2 -> {
+                //  AddToDatabase(SQLTable.GROUP, SQLQueryType.INSERT);
+                String textStuGroupAdd1 = new String();
+                textStuGroupAdd1 = nameGroupStuGrou.getText();
+                String textStuGroupAdd2 = new String();
+                textStuGroupAdd2 = nameFacultuStuGro.getText();
+                String textStuGroupAdd3 = new String();
+                textStuGroupAdd3 = nameCourse.getText();
+                String textStuGroupAdd4 = new String();
+                textStuGroupAdd4 = direction.getText();
+                String textStuGroupAdd5 = new String();
+                textStuGroupAdd5 = nameCathedraStuGro.getText();
+
+                try {
+                    getResultFromDB(SQLQueryType.INSERT, "students_group", textStuGroupAdd1, textStuGroupAdd2, textStuGroupAdd3, textStuGroupAdd4, textStuGroupAdd5);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            delete.setOnAction(event2 -> {
+                //DeleteFromDatabase(SQLTable.GROUP, SQLQueryType.DELETE);
+                String textStuGroupDel = new String();
+                textStuGroupDel = nameGroup_del.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("DELETE FROM univer.students_group WHERE Name_of_the_group='").append(textStuGroupDel).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    nameGroup_del.clear();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            update.setOnAction(event2 -> {
+                // UpdateDatabase(SQLTable.GROUP, SQLQueryType.UPDATE);
+                String textStuGroupUpd1 = new String();
+                textStuGroupUpd1 = nameGroupStuGro_upd.getText();
+                String textStuGroupUpd2 = new String();
+                textStuGroupUpd2 = nameFacultuStuGro_upd.getText();
+                String textStuGroupUpd3 = new String();
+                textStuGroupUpd3 = nameCourse_upd.getText();
+                String textStuGroupUpd4 = new String();
+                textStuGroupUpd4 = direction_upd.getText();
+                String textStuGroupUpd5 = new String();
+                textStuGroupUpd5 = nameCathedraStuGro_upd.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("UPDATE univer.students_group SET Name_of_the_faculty='").append(textStuGroupUpd2).append("', Number_of_course='").append(textStuGroupUpd3).append("', Direction='").append(textStuGroupUpd4).append("', Name_of_cathedra='").append(textStuGroupUpd5).append("' WHERE Name_of_the_group='").append(textStuGroupUpd1).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    nameGroupStuGro_upd.clear();
+                    nameFacultuStuGro_upd.clear();
+                    nameCourse_upd.clear();
+                    direction_upd.clear();
+                    nameCathedraStuGro_upd.clear();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+
+        teacher_rb.setOnAction(event1 -> {
+            EDAdd.setVisible(false);
+            StudentAdd.setVisible(false);
+            StudentsGroupAdd.setVisible(false);
+            TeacherAdd.setVisible(true);
+            FacultyAdd.setVisible(false);
+            CathedraAdd.setVisible(false);
+            add.setVisible(true);
+
+            EDDel.setVisible(false);
+            StudentDel.setVisible(false);
+            StudentsGroupDel.setVisible(false);
+            TeacherDel.setVisible(true);
+            FacultyDel.setVisible(false);
+            CathedraDel.setVisible(false);
+            delete.setVisible(true);
+
+            EDUpdate.setVisible(false);
+            StudentUpdate.setVisible(false);
+            StudentsGroupUpdate.setVisible(false);
+            TeacherUpdate.setVisible(true);
+            FacultyUpdate.setVisible(false);
+            CathedraUpdate.setVisible(false);
+            update.setVisible(true);
+
+            TableCathedra.setVisible(false);
+            TableEB.setVisible(false);
+            TableFaculty.setVisible(false);
+            TableStudent.setVisible(false);
+            TableStudentsGroup.setVisible(false);
+            TableTeacher.setVisible(true);
+
+            add.setOnAction(event2 -> {
+                //AddToDatabase(SQLTable.TEACHER, SQLQueryType.INSERT);
+                String textTeacherAdd1 = new String();
+                textTeacherAdd1 = personalNumberTeacher.getText();
+                String textTeacherAdd2 = new String();
+                textTeacherAdd2 = lastNameTeacher.getText();
+                String textTeacherAdd3 = new String();
+                textTeacherAdd3 = jobTittle.getText();
+                String textTeacherAdd4 = new String();
+                textTeacherAdd4 = degree.getText();
+                String textTeacherAdd5 = new String();
+                textTeacherAdd5 = nameCathedraTeach.getText();
+                String textTeacherAdd6 = new String();
+                textTeacherAdd6 = phone.getText();
+                String textTeacherAdd7 = new String();
+                textTeacherAdd7 = addressTeach.getText();
+
+                try {
+                    getResultFromDB(SQLQueryType.INSERT, "teacher", textTeacherAdd1, textTeacherAdd2, textTeacherAdd3, textTeacherAdd4, textTeacherAdd5, textTeacherAdd6, textTeacherAdd7);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            delete.setOnAction(event2 -> {
+                //DeleteFromDatabase(SQLTable.TEACHER, SQLQueryType.DELETE);
+                String textTeacherDel = new String();
+                textTeacherDel = personalNumberTeach_del.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("DELETE FROM univer.teacher WHERE Personal_number_teacher='").append(textTeacherDel).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    personalNumberTeach_del.clear();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            update.setOnAction(event2 -> {
+                // UpdateDatabase(SQLTable.TEACHER, SQLQueryType.UPDATE);
+                String textTeacherUpd1 = new String();
+                textTeacherUpd1 = personalNumberTeacher_upd.getText();
+                String textTeacherUpd2 = new String();
+                textTeacherUpd2 = lastNameTeacher_upd.getText();
+                String textTeacherUpd3 = new String();
+                textTeacherUpd3 = jobTittle_upd.getText();
+                String textTeacherUpd4 = new String();
+                textTeacherUpd4 = degree_upd.getText();
+                String textTeacherUpd5 = new String();
+                textTeacherUpd5 = nameCathedraTeach_upd.getText();
+                String textTeacherUpd6 = new String();
+                textTeacherUpd6 = phone_upd.getText();
+                String textTeacherUpd7 = new String();
+                textTeacherUpd7 = addressTeach_upd.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("UPDATE univer.teacher SET Last_name='").append(textTeacherUpd2).append("', Job_title='").append(textTeacherUpd3).append("', Degree='").append(textTeacherUpd4).append("', Name_of_the_cathedra='").append(textTeacherUpd5).append("', Phone='").append(textTeacherUpd6).append("', Address='").append(textTeacherUpd6).append("' WHERE Personal_number_teacher='").append(textTeacherUpd1).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    personalNumberTeacher_upd.clear();
+                    lastNameTeacher_upd.clear();
+                    jobTittle_upd.clear();
+                    degree_upd.clear();
+                    nameCathedraTeach_upd.clear();
+                    phone_upd.clear();
+                    addressTeach_upd.clear();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+
+        EB_rb.setOnAction(event1 -> {
+            EDAdd.setVisible(true);
+            StudentAdd.setVisible(false);
+            StudentsGroupAdd.setVisible(false);
+            TeacherAdd.setVisible(false);
+            FacultyAdd.setVisible(false);
+            CathedraAdd.setVisible(false);
+            add.setVisible(true);
+
+            EDDel.setVisible(true);
+            StudentDel.setVisible(false);
+            StudentsGroupDel.setVisible(false);
+            TeacherDel.setVisible(false);
+            FacultyDel.setVisible(false);
+            CathedraDel.setVisible(false);
+            delete.setVisible(true);
+
+            EDUpdate.setVisible(true);
+            StudentUpdate.setVisible(false);
+            StudentsGroupUpdate.setVisible(false);
+            TeacherUpdate.setVisible(false);
+            FacultyUpdate.setVisible(false);
+            CathedraUpdate.setVisible(false);
+            update.setVisible(true);
+
+            TableCathedra.setVisible(false);
+            TableEB.setVisible(true);
+            TableFaculty.setVisible(false);
+            TableStudent.setVisible(false);
+            TableStudentsGroup.setVisible(false);
+            TableTeacher.setVisible(false);
+            add.setOnAction(event2 -> {
+
+                // AddToDatabase(SQLTable.BUILDING, SQLQueryType.INSERT);
+                String textEDAdd1 = new String();
+                textEDAdd1 = NumberED.getText();
+                String textEDAdd2 = new String();
+                textEDAdd2 = addressEB.getText();
+                String textEDAdd3 = new String();
+                textEDAdd3 = phoneDisp.getText();
+
+                try {
+                    getResultFromDB(SQLQueryType.INSERT, "education_building", textEDAdd1, textEDAdd2, textEDAdd3);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            });
+            delete.setOnAction(event2 -> {
+                //DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
+                String textEDDel = new String();
+                textEDDel = numberED_del.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("DELETE FROM univer.education_building WHERE Number_of_the_education_building='").append(textEDDel).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    numberED_del.clear();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            update.setOnAction(event2 -> {
+                //UpdateDatabase(SQLTable.BUILDING, SQLQueryType.UPDATE);
+                String textEDUpd1 = new String();
+                textEDUpd1 = NumberED_upd.getText();
+                String textEDUpd2 = new String();
+                textEDUpd2 = addressEB_upd.getText();
+                String textEDUpd3 = new String();
+                textEDUpd3 = phoneDisp_upd.getText();
+                StringBuilder queryBuilder = new StringBuilder();
+                queryBuilder.append("UPDATE univer.education_building SET Address='").append(textEDUpd2).append("', Phone_dispatcher='").append(textEDUpd3).append("' WHERE Number_of_the_education_building='").append(textEDUpd1).append("';");
+                try {
+                    Statement insertion = DB_CONNECTION.createStatement();
+                    insertion.executeUpdate(queryBuilder.toString());
+                    NumberED_upd.clear();
+                    addressEB_upd.clear();
+                    phoneDisp_upd.clear();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
 
     }
-
 
 
     public void setStage(Stage source) {
         this.guiRoot = source;
     }
 
-   /* private void AddToDatabase(SQLTable table, SQLQueryType query) {
+    /*private void AddToDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
 
     }
@@ -1307,7 +1313,8 @@ public class ControllerFX {
         return result;
     }
 
-    private void getResultFromDB(SQLQueryType type, String... args) throws Exception {
+
+    private ResultSet getResultFromDB(SQLQueryType type, String... args) throws Exception {
         ResultSet result = null;
 
         switch (type) {
@@ -1323,14 +1330,14 @@ public class ControllerFX {
 
                     if (args.length == 1) {
                         result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]);
-                        //System.out.println(result.toString());
+                        /*//System.out.println(result.toString());
                         while (result.next()){
-                           String test = result.getString("Name_of_the_cathedra");
-                            ObservableList<Object> data = FXCollections.observableArrayList(test);
+                            //String test = result.getString("Name_of_the_cathedra");
+                            ObservableList<Object> data = FXCollections.observableArrayList(test );
                             TableCathedra.setItems(data);
                             System.out.println(test);
 
-                        }
+                        }*/
                     } else {
                         result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]
                                 + " WHERE " + args[1] + " = " + args[2]);
@@ -1390,33 +1397,7 @@ public class ControllerFX {
                         Statement insertion = DB_CONNECTION.createStatement();
                         int insertionResult = insertion.executeUpdate(queryBuilder.toString());
                         System.out.println("Insert was performed with code: " + insertionResult);
-                        nameCathedraCath.clear();
-                        headDepartment.clear();
-                        phoneDepartment.clear();
-                        numberEDCath.clear();
-                        numberRecordBook.clear();
-                        lastNameStudent.clear();
-                        yearBirth.clear();
-                        nameGroupStu.clear();
-                        nameGroupStuGrou.clear();
-                        nameFacultuStuGro.clear();
-                        nameCourse.clear();
-                        direction.clear();
-                        nameCathedraStuGro.clear();
-                        personalNumberTeacher.clear();
-                        lastNameTeacher.clear();
-                        jobTittle.clear();
-                        degree.clear();
-                        nameCathedraTeach.clear();
-                        phone.clear();
-                        addressTeach.clear();
-                        NumberED.clear();
-                        addressEB.clear();
-                        phoneDisp.clear();
-                        nameFacultyFac.clear();
-                        dean.clear();
-                        phoneDean.clear();
-                        numberStudents.clear();
+
                     }
                 }
 
@@ -1425,7 +1406,65 @@ public class ControllerFX {
 
         }
 
+        return result;
 
+    }
+
+    private void SetTableValues(SQLTable table) throws Exception {
+        ClearTables();
+        ResultSet result = getResultFromDB(SQLQueryType.SELECT, table.name().toLowerCase());
+        switch (table) {
+            case CATHEDRA: {
+                if (result == null) return;
+                ArrayList<Cathedra> values = new ArrayList<>();
+                while (result.next()) {
+                    values.add(new Cathedra(
+                            result.getString(1),
+                            result.getString(2),
+                            Integer.parseInt(result.getString(3)),
+                            Integer.parseInt(result.getString(4))
+                    ));
+                }
+
+                ObservableList<Cathedra> tableValues = FXCollections.observableArrayList(values);
+
+                TableCathedra.setItems(tableValues);
+
+                break;
+            }
+
+        }
+
+    }
+
+    private void ClearTables() {
+        nameCathedraCath.clear();
+        headDepartment.clear();
+        phoneDepartment.clear();
+        numberEDCath.clear();
+        numberRecordBook.clear();
+        lastNameStudent.clear();
+        yearBirth.clear();
+        nameGroupStu.clear();
+        nameGroupStuGrou.clear();
+        nameFacultuStuGro.clear();
+        nameCourse.clear();
+        direction.clear();
+        nameCathedraStuGro.clear();
+        personalNumberTeacher.clear();
+        lastNameTeacher.clear();
+        jobTittle.clear();
+        degree.clear();
+        nameCathedraTeach.clear();
+        phone.clear();
+        addressTeach.clear();
+        NumberED.clear();
+        addressEB.clear();
+        phoneDisp.clear();
+        nameFacultyFac.clear();
+        dean.clear();
+        phoneDean.clear();
+        numberStudents.clear();
     }
 
 
