@@ -23,6 +23,38 @@ public class Faculty {
         this.number_students = new SimpleIntegerProperty(number_students);
     }
 
+    public String getName_faculty() {
+        return name_faculty.get();
+    }
+
+    public StringProperty name_facultyProperty() {
+        return name_faculty;
+    }
+
+    public String getDean() {
+        return dean.get();
+    }
+
+    public StringProperty deanProperty() {
+        return dean;
+    }
+
+    public int getPhone_dean() {
+        return phone_dean.get();
+    }
+
+    public IntegerProperty phone_deanProperty() {
+        return phone_dean;
+    }
+
+    public int getNumber_students() {
+        return number_students.get();
+    }
+
+    public IntegerProperty number_studentsProperty() {
+        return number_students;
+    }
+
     public Faculty(LinkedList<String> fields){
         this.name_faculty = new SimpleStringProperty(fields.get(0));
         this.dean = new SimpleStringProperty(fields.get(1));

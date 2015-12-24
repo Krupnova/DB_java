@@ -10,6 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.Tables.Cathedra;
+import sample.Tables.EducationBuilding;
+import sample.Tables.Faculty;
 
 import java.net.URL;
 import java.sql.*;
@@ -364,13 +366,13 @@ public class ControllerFX {
     private TextField addressTeach; // Value injected by FXMLLoader
 
     @FXML // fx:id="TableFaculty"
-    private TableView<?> TableFaculty; // Value injected by FXMLLoader
+    private TableView<Faculty> TableFaculty; // Value injected by FXMLLoader
 
     @FXML // fx:id="TableStudent"
     private TableView<?> TableStudent; // Value injected by FXMLLoader
 
     @FXML // fx:id="TableEB"
-    private TableView<?> TableEB; // Value injected by FXMLLoader
+    private TableView<EducationBuilding> TableEB; // Value injected by FXMLLoader
 
     @FXML // fx:id="TableStudentsGroup"
     private TableView<?> TableStudentsGroup; // Value injected by FXMLLoader
@@ -609,11 +611,20 @@ public class ControllerFX {
         assert Teacher_add != null : "fx:id=\"Teacher_add\" was not injected: check your FXML file 'sample.fxml'.";
         assert addressTeach != null : "fx:id=\"addressTeach\" was not injected: check your FXML file 'sample.fxml'.";
 
-        //System.out.println(SQLTable.CATHEDRA.name());
+
         ColumnCath1.setCellValueFactory(new PropertyValueFactory<>("name_cathedra"));
         ColumnCath2.setCellValueFactory(new PropertyValueFactory<>("head_department"));
         ColumnCath3.setCellValueFactory(new PropertyValueFactory<>("phone_department"));
         ColumnCath4.setCellValueFactory(new PropertyValueFactory<>("number_EB"));
+
+        ColumnEB1.setCellValueFactory(new PropertyValueFactory<>("number_EB"));
+        ColumnEB2.setCellValueFactory(new PropertyValueFactory<>("address"));
+        ColumnEB3.setCellValueFactory(new PropertyValueFactory<>("phone_EB"));
+
+        ColumnFaculty1.setCellValueFactory(new PropertyValueFactory<>("name_faculty"));
+        ColumnFaculty2.setCellValueFactory(new PropertyValueFactory<>("dean"));
+        ColumnFaculty3.setCellValueFactory(new PropertyValueFactory<>("phone_dean"));
+        ColumnFaculty4.setCellValueFactory(new PropertyValueFactory<>("number_students"));
 
         DB_CONNECTION = getConnection();
         if (DB_CONNECTION != null)
@@ -687,12 +698,6 @@ public class ControllerFX {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-                /*result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]
-                        + " WHERE " + args[1] + " = " + args[2]);*/
-
-                /*ObservableList<Cathedra> usersData = FXCollections.observableArrayList();
-                ColumnCath1.setCellValueFactory(new PropertyValueFactory<Cathedra, String>("name_cathedra"));
-                TableCathedra.setItems(usersData.add("qq"),);*/
 
             //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса дл€ опред талицы
             add.setOnAction(event2 -> {
@@ -724,8 +729,11 @@ public class ControllerFX {
                     Statement insertion = DB_CONNECTION.createStatement();
                     insertion.executeUpdate(queryBuilder.toString());
                     nameCathedra_del.clear();
+                    SetTableValues(SQLTable.CATHEDRA);
 
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
@@ -748,8 +756,11 @@ public class ControllerFX {
                     headDepartment_upd.clear();
                     phoneDepartment_upd.clear();
                     numberEDCath_upd.clear();
+                    SetTableValues(SQLTable.CATHEDRA);
 
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -801,11 +812,7 @@ public class ControllerFX {
                 String textStudentAdd4 = new String();
                 textStudentAdd4 = nameGroupStu.getText();
 
-                try {
-                    getResultFromDB(SQLQueryType.INSERT, "student", textStudentAdd1, textStudentAdd2, textStudentAdd3, textStudentAdd4);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
             });
             delete.setOnAction(event2 -> {
                 //DeleteFromDatabase(SQLTable.STUDENT, SQLQueryType.DELETE);
@@ -880,6 +887,12 @@ public class ControllerFX {
             TableStudentsGroup.setVisible(false);
             TableTeacher.setVisible(false);
 
+            try {
+                SetTableValues(SQLTable.FACULTY);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             add.setOnAction(event2 -> {
                 // AddToDatabase(SQLTable.FACULTY, SQLQueryType.INSERT);
                 String textFacultyAdd1 = new String();
@@ -891,8 +904,10 @@ public class ControllerFX {
                 String textFacultyAdd4 = new String();
                 textFacultyAdd4 = numberStudents.getText();
 
+
                 try {
                     getResultFromDB(SQLQueryType.INSERT, "faculty", textFacultyAdd1, textFacultyAdd2, textFacultyAdd3, textFacultyAdd4);
+                    SetTableValues(SQLTable.FACULTY);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -907,8 +922,11 @@ public class ControllerFX {
                     Statement insertion = DB_CONNECTION.createStatement();
                     insertion.executeUpdate(queryBuilder.toString());
                     nameFaculty_del.clear();
+                    SetTableValues(SQLTable.FACULTY);
 
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -932,8 +950,11 @@ public class ControllerFX {
                     dean_upd.clear();
                     phoneDean_upd.clear();
                     numberStudents_upd.clear();
+                    SetTableValues(SQLTable.FACULTY);
 
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
@@ -1170,9 +1191,15 @@ public class ControllerFX {
             TableStudent.setVisible(false);
             TableStudentsGroup.setVisible(false);
             TableTeacher.setVisible(false);
+
+            try {
+                SetTableValues(SQLTable.EDUCATION_BUILDING);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             add.setOnAction(event2 -> {
 
-                // AddToDatabase(SQLTable.BUILDING, SQLQueryType.INSERT);
+                // AddToDatabase(SQLTable.EDUCATION_BUILDING, SQLQueryType.INSERT);
                 String textEDAdd1 = new String();
                 textEDAdd1 = NumberED.getText();
                 String textEDAdd2 = new String();
@@ -1182,13 +1209,14 @@ public class ControllerFX {
 
                 try {
                     getResultFromDB(SQLQueryType.INSERT, "education_building", textEDAdd1, textEDAdd2, textEDAdd3);
+                    SetTableValues(SQLTable.EDUCATION_BUILDING);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
             });
             delete.setOnAction(event2 -> {
-                //DeleteFromDatabase(SQLTable.BUILDING, SQLQueryType.DELETE);
+                //DeleteFromDatabase(SQLTable.EDUCATION_BUILDING, SQLQueryType.DELETE);
                 String textEDDel = new String();
                 textEDDel = numberED_del.getText();
                 StringBuilder queryBuilder = new StringBuilder();
@@ -1197,13 +1225,17 @@ public class ControllerFX {
                     Statement insertion = DB_CONNECTION.createStatement();
                     insertion.executeUpdate(queryBuilder.toString());
                     numberED_del.clear();
+                    SetTableValues(SQLTable.EDUCATION_BUILDING);
+
 
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
             update.setOnAction(event2 -> {
-                //UpdateDatabase(SQLTable.BUILDING, SQLQueryType.UPDATE);
+                //UpdateDatabase(SQLTable.EDUCATION_BUILDING, SQLQueryType.UPDATE);
                 String textEDUpd1 = new String();
                 textEDUpd1 = NumberED_upd.getText();
                 String textEDUpd2 = new String();
@@ -1218,8 +1250,11 @@ public class ControllerFX {
                     NumberED_upd.clear();
                     addressEB_upd.clear();
                     phoneDisp_upd.clear();
+                    SetTableValues(SQLTable.EDUCATION_BUILDING);
 
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
@@ -1232,20 +1267,7 @@ public class ControllerFX {
         this.guiRoot = source;
     }
 
-    /*private void AddToDatabase(SQLTable table, SQLQueryType query) {
-        System.out.println("table " + table.toString() + " query " + query.toString());
-
-    }
-
-    private void DeleteFromDatabase(SQLTable table, SQLQueryType query) {
-        System.out.println("table " + table.toString() + " query " + query.toString());
-    }
-
-    private void UpdateDatabase(SQLTable table, SQLQueryType query) {
-        System.out.println("table " + table.toString() + " query " + query.toString());
-    }*/
-
-    /*
+       /*
     * “ранзакци€ - это комплексна€ операци€, состо€ща€ из группы операций, которые выполн€ютс€ либо все,
     * либо ни одной в случае ошибки или отмены.
     *
@@ -1330,14 +1352,7 @@ public class ControllerFX {
 
                     if (args.length == 1) {
                         result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]);
-                        /*//System.out.println(result.toString());
-                        while (result.next()){
-                            //String test = result.getString("Name_of_the_cathedra");
-                            ObservableList<Object> data = FXCollections.observableArrayList(test );
-                            TableCathedra.setItems(data);
-                            System.out.println(test);
 
-                        }*/
                     } else {
                         result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]
                                 + " WHERE " + args[1] + " = " + args[2]);
@@ -1412,9 +1427,10 @@ public class ControllerFX {
 
     private void SetTableValues(SQLTable table) throws Exception {
         ClearTables();
-        ResultSet result = getResultFromDB(SQLQueryType.SELECT, table.name().toLowerCase());
+
         switch (table) {
             case CATHEDRA: {
+                ResultSet result = getResultFromDB(SQLQueryType.SELECT, table.name().toLowerCase());
                 if (result == null) return;
                 ArrayList<Cathedra> values = new ArrayList<>();
                 while (result.next()) {
@@ -1432,6 +1448,44 @@ public class ControllerFX {
 
                 break;
             }
+            case EDUCATION_BUILDING:{
+                ResultSet result = getResultFromDB(SQLQueryType.SELECT, table.name().toLowerCase());
+                if (result == null) return;
+                ArrayList<EducationBuilding> values = new ArrayList<>();
+                while (result.next()) {
+                    values.add(new EducationBuilding(
+                            Integer.parseInt(result.getString(1)),
+                            result.getString(2),
+                            Integer.parseInt(result.getString(3))
+                    ));
+                }
+
+                ObservableList<EducationBuilding> tableValues = FXCollections.observableArrayList(values);
+
+                TableEB.setItems(tableValues);
+
+                break;
+            }
+            case FACULTY:{
+                ResultSet result = getResultFromDB(SQLQueryType.SELECT, table.name().toLowerCase());
+                if (result == null) return;
+                ArrayList<Faculty> values = new ArrayList<>();
+                while (result.next()) {
+                    values.add(new Faculty(
+                            result.getString(1),
+                            result.getString(2),
+                            Integer.parseInt(result.getString(3)),
+                            Integer.parseInt(result.getString(4))
+                    ));
+                }
+
+                ObservableList<Faculty> tableValues = FXCollections.observableArrayList(values);
+
+                TableFaculty.setItems(tableValues);
+
+                break;
+            }
+
 
         }
 
