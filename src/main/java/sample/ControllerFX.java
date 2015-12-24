@@ -1,10 +1,15 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.Tables.Cathedra;
 
 import java.net.URL;
 import java.sql.*;
@@ -374,7 +379,88 @@ public class ControllerFX {
     private TableView<?> TableTeacher; // Value injected by FXMLLoader
 
     @FXML // fx:id="TableCathedra"
-    private TableView<?> TableCathedra; // Value injected by FXMLLoader
+    private TableView<Cathedra> TableCathedra; // Value injected by FXMLLoader
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudent1;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudent2;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudent3;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudent4;
+
+    @FXML
+    private TableColumn<?, ?> ColumnCath4;
+
+    @FXML
+    private TableColumn<Cathedra, String> ColumnCath1;
+
+    @FXML
+    private TableColumn<?, ?> ColumnCath3;
+
+    @FXML
+    private TableColumn<?, ?> ColumnCath2;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudentsGroup4;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudentsGroup3;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudentsGroup2;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudentsGroup1;
+
+    @FXML
+    private TableColumn<?, ?> ColumnStudentsGroup5;
+
+    @FXML
+    private TableColumn<?, ?> ColumnEB1;
+
+    @FXML
+    private TableColumn<?, ?> ColumnEB2;
+
+    @FXML
+    private TableColumn<?, ?> ColumnFaculty1;
+
+    @FXML
+    private TableColumn<?, ?> ColumnFaculty3;
+
+    @FXML
+    private TableColumn<?, ?> ColumnFaculty2;
+
+    @FXML
+    private TableColumn<?, ?> ColumnEB3;
+
+    @FXML
+    private TableColumn<?, ?> ColumnFaculty4;
+
+    @FXML
+    private TableColumn<?, ?> ColumnTeacher1;
+
+    @FXML
+    private TableColumn<?, ?> ColumnTeacher3;
+
+    @FXML
+    private TableColumn<?, ?> ColumnTeacher2;
+
+    @FXML
+    private TableColumn<?, ?> ColumnTeacher5;
+
+    @FXML
+    private TableColumn<?, ?> ColumnTeacher4;
+
+    @FXML
+    private TableColumn<?, ?> ColumnTeacher7;
+
+    @FXML
+    private TableColumn<?, ?> ColumnTeacher6;
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -405,6 +491,10 @@ public class ControllerFX {
         assert TableFaculty != null : "fx:id=\"TableFaculty\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameGroupStuGro_upd != null : "fx:id=\"nameGroupStuGro_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert dean != null : "fx:id=\"dean\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudent1 != null : "fx:id=\"ColumnStudent1\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudent2 != null : "fx:id=\"ColumnStudent2\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudent3 != null : "fx:id=\"ColumnStudent3\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudent4 != null : "fx:id=\"ColumnStudent4\" was not injected: check your FXML file 'sample.fxml'.";
         assert yearBirth != null : "fx:id=\"yearBirth\" was not injected: check your FXML file 'sample.fxml'.";
         assert TeacherDel != null : "fx:id=\"TeacherDel\" was not injected: check your FXML file 'sample.fxml'.";
         assert Cathedra_update != null : "fx:id=\"Cathedra_update\" was not injected: check your FXML file 'sample.fxml'.";
@@ -416,29 +506,45 @@ public class ControllerFX {
         assert dean_upd != null : "fx:id=\"dean_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert numberEDCath != null : "fx:id=\"numberEDCath\" was not injected: check your FXML file 'sample.fxml'.";
         assert TableStudent != null : "fx:id=\"TableStudent\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnCath4 != null : "fx:id=\"ColumnCath4\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnCath1 != null : "fx:id=\"ColumnCath1\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnCath3 != null : "fx:id=\"ColumnCath3\" was not injected: check your FXML file 'sample.fxml'.";
         assert phoneDean != null : "fx:id=\"phoneDean\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameCourse != null : "fx:id=\"nameCourse\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnCath2 != null : "fx:id=\"ColumnCath2\" was not injected: check your FXML file 'sample.fxml'.";
         assert TableEB != null : "fx:id=\"TableEB\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameFacultuStuGro_upd != null : "fx:id=\"nameFacultuStuGro_upd\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameFacultuStuGro != null : "fx:id=\"nameFacultuStuGro\" was not injected: check your FXML file 'sample.fxml'.";
         assert StudentUpdate != null : "fx:id=\"StudentUpdate\" was not injected: check your FXML file 'sample.fxml'.";
         assert EDAdd != null : "fx:id=\"EDAdd\" was not injected: check your FXML file 'sample.fxml'.";
         assert FacultyUpdate != null : "fx:id=\"FacultyUpdate\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudentsGroup4 != null : "fx:id=\"ColumnStudentsGroup4\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudentsGroup3 != null : "fx:id=\"ColumnStudentsGroup3\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudentsGroup2 != null : "fx:id=\"ColumnStudentsGroup2\" was not injected: check your FXML file 'sample.fxml'.";
         assert teacher_rb != null : "fx:id=\"teacher_rb\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudentsGroup1 != null : "fx:id=\"ColumnStudentsGroup1\" was not injected: check your FXML file 'sample.fxml'.";
         assert CathedraDel != null : "fx:id=\"CathedraDel\" was not injected: check your FXML file 'sample.fxml'.";
         assert StudentsGroup_update != null : "fx:id=\"StudentsGroup_update\" was not injected: check your FXML file 'sample.fxml'.";
         assert EDUpdate != null : "fx:id=\"EDUpdate\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnStudentsGroup5 != null : "fx:id=\"ColumnStudentsGroup5\" was not injected: check your FXML file 'sample.fxml'.";
         assert phone_upd != null : "fx:id=\"phone_upd\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnEB1 != null : "fx:id=\"ColumnEB1\" was not injected: check your FXML file 'sample.fxml'.";
         assert personalNumberTeacher != null : "fx:id=\"personalNumberTeacher\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnEB2 != null : "fx:id=\"ColumnEB2\" was not injected: check your FXML file 'sample.fxml'.";
         assert jobTittle != null : "fx:id=\"jobTittle\" was not injected: check your FXML file 'sample.fxml'.";
         assert TableStudentsGroup != null : "fx:id=\"TableStudentsGroup\" was not injected: check your FXML file 'sample.fxml'.";
         assert TableTeacher != null : "fx:id=\"TableTeacher\" was not injected: check your FXML file 'sample.fxml'.";
         assert Faculty_update != null : "fx:id=\"Faculty_update\" was not injected: check your FXML file 'sample.fxml'.";
         assert numberStudents != null : "fx:id=\"numberStudents\" was not injected: check your FXML file 'sample.fxml'.";
         assert Faculty_add != null : "fx:id=\"Faculty_add\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnFaculty1 != null : "fx:id=\"ColumnFaculty1\" was not injected: check your FXML file 'sample.fxml'.";
         assert headDepartment != null : "fx:id=\"headDepartment\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnFaculty3 != null : "fx:id=\"ColumnFaculty3\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnFaculty2 != null : "fx:id=\"ColumnFaculty2\" was not injected: check your FXML file 'sample.fxml'.";
         assert pane_del != null : "fx:id=\"pane_del\" was not injected: check your FXML file 'sample.fxml'.";
         assert StudentsGroupUpdate != null : "fx:id=\"StudentsGroupUpdate\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnEB3 != null : "fx:id=\"ColumnEB3\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnFaculty4 != null : "fx:id=\"ColumnFaculty4\" was not injected: check your FXML file 'sample.fxml'.";
         assert FacultyAdd != null : "fx:id=\"FacultyAdd\" was not injected: check your FXML file 'sample.fxml'.";
         assert faculty_rb != null : "fx:id=\"faculty_rb\" was not injected: check your FXML file 'sample.fxml'.";
         assert phoneDisp_upd != null : "fx:id=\"phoneDisp_upd\" was not injected: check your FXML file 'sample.fxml'.";
@@ -469,10 +575,17 @@ public class ControllerFX {
         assert student_rb != null : "fx:id=\"student_rb\" was not injected: check your FXML file 'sample.fxml'.";
         assert ED_del != null : "fx:id=\"ED_del\" was not injected: check your FXML file 'sample.fxml'.";
         assert StudentsGroup_add != null : "fx:id=\"StudentsGroup_add\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnTeacher1 != null : "fx:id=\"ColumnTeacher1\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnTeacher3 != null : "fx:id=\"ColumnTeacher3\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnTeacher2 != null : "fx:id=\"ColumnTeacher2\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameGroupStuGrou != null : "fx:id=\"nameGroupStuGrou\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnTeacher5 != null : "fx:id=\"ColumnTeacher5\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameCathedraStuGro_upd != null : "fx:id=\"nameCathedraStuGro_upd\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnTeacher4 != null : "fx:id=\"ColumnTeacher4\" was not injected: check your FXML file 'sample.fxml'.";
         assert update != null : "fx:id=\"update\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnTeacher7 != null : "fx:id=\"ColumnTeacher7\" was not injected: check your FXML file 'sample.fxml'.";
         assert Student_update != null : "fx:id=\"Student_update\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ColumnTeacher6 != null : "fx:id=\"ColumnTeacher6\" was not injected: check your FXML file 'sample.fxml'.";
         assert delete != null : "fx:id=\"delete\" was not injected: check your FXML file 'sample.fxml'.";
         assert TeacherAdd != null : "fx:id=\"TeacherAdd\" was not injected: check your FXML file 'sample.fxml'.";
         assert StudentsGroupAdd != null : "fx:id=\"StudentsGroupAdd\" was not injected: check your FXML file 'sample.fxml'.";
@@ -563,7 +676,12 @@ public class ControllerFX {
                 TableStudentsGroup.setVisible(false);
                 TableTeacher.setVisible(false);
 
+                /*result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]
+                        + " WHERE " + args[1] + " = " + args[2]);*/
 
+               /* ObservableList<Cathedra> usersData = FXCollections.observableArrayList();
+                ColumnCath1.setCellValueFactory(new PropertyValueFactory<Cathedra, String>("name_cathedra"));
+                TableCathedra.setItems(usersData.add("qq"));*/
 
                 //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса для опред талицы
                 add.setOnAction(event2 -> {
@@ -573,7 +691,7 @@ public class ControllerFX {
                     textCathAdd1 = nameCathedraCath.getText();
                     String textCathAdd2 = new String();
                     textCathAdd2 = headDepartment.getText();
-                    String textCathAdd3 = new String();
+                    String textCathAdd3 = "";
                     textCathAdd3 = phoneDepartment.getText();
                     String textCathAdd4 = new String();
                     textCathAdd4 = numberEDCath.getText();
@@ -601,7 +719,6 @@ public class ControllerFX {
                 });
                 update.setOnAction(event2 -> {
                    // UpdateDatabase(SQLTable.CATHEDRA, SQLQueryType.UPDATE);
-                    //UPDATE `univer`.`cathedra` SET `Head_of_department`='Lavrov' WHERE `Name_of_the_cathedra`='Building and road machines';
                     String textCathUpd1 = new String();
                     textCathUpd1 = nameCathedraCath_upd.getText();
                     String textCathUpd2 = new String();
@@ -1297,37 +1414,6 @@ public class ControllerFX {
 
                 break;
             }
-           /* case DELETE: {
-
-                ArrayList<SQLTableColumnsInfo> columnsData = getColumnsData(args[0]);
-
-                StringBuilder queryBuilder = new StringBuilder();
-                queryBuilder.append("DELETE FROM ").append(DB_SCHEMA_NAME).append(".").append(args[0]).append(" WHERE ");
-                queryBuilder.append(columnsData.get(0).getColumnName()).append("='");
-                if (columnsData.get(0).getColumnType().contains("varchar")) {
-                    queryBuilder.append(
-                            getSQLString(
-                                    getVarchar255Arg(
-                                            args[1],
-                                            columnsData.get(0).getIsPrimary()
-                                    )
-                            )
-                    );
-                } else {
-                    queryBuilder.append(
-                            getInt11Arg(
-                                    args[1],
-                                    columnsData.get(0).getIsPrimary()
-                            )
-                    );
-                }
-                queryBuilder.append("' ;");
-
-                Statement insertion = DB_CONNECTION.createStatement();
-                int insertionResult = insertion.executeUpdate(queryBuilder.toString());
-                System.out.println("Delete was performed with code: " + insertionResult);
-                break;
-            }*/
 
         }
 

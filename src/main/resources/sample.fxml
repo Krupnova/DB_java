@@ -328,53 +328,53 @@
                                  <children>
                                     <TableView fx:id="TableCathedra" layoutX="28.0" layoutY="29.0" prefHeight="515.0" prefWidth="640.0" visible="false">
                                       <columns>
-                                        <TableColumn prefWidth="145.0" text="Name_of_the_cathedra" />
-                                        <TableColumn prefWidth="126.0" text="Head_of_department" />
-                                          <TableColumn prefWidth="157.0" text="Phone_of_the_department" />
-                                          <TableColumn prefWidth="211.0" text="Number_of_the_education_building" />
+                                        <TableColumn fx:id="ColumnCath1" prefWidth="145.0" text="Name_of_the_cathedra" />
+                                        <TableColumn fx:id="ColumnCath2" prefWidth="126.0" text="Head_of_department" />
+                                          <TableColumn fx:id="ColumnCath3" prefWidth="157.0" text="Phone_of_the_department" />
+                                          <TableColumn fx:id="ColumnCath4" prefWidth="211.0" text="Number_of_the_education_building" />
                                       </columns>
                                     </TableView>
                                     <TableView fx:id="TableEB" layoutX="37.0" layoutY="29.0" prefHeight="507.0" prefWidth="623.0" visible="false">
                                       <columns>
-                                        <TableColumn prefWidth="213.0" text="Number_of_the_education_building" />
-                                        <TableColumn prefWidth="195.0" text="Address" />
-                                          <TableColumn prefWidth="214.0" text="Phone_dispatcher" />
+                                        <TableColumn fx:id="ColumnEB1" prefWidth="213.0" text="Number_of_the_education_building" />
+                                        <TableColumn fx:id="ColumnEB2" prefWidth="195.0" text="Address" />
+                                          <TableColumn fx:id="ColumnEB3" prefWidth="214.0" text="Phone_dispatcher" />
                                       </columns>
                                     </TableView>
                                     <TableView fx:id="TableFaculty" layoutX="28.0" layoutY="29.0" prefHeight="516.0" prefWidth="643.0" visible="false">
                                       <columns>
-                                        <TableColumn prefWidth="138.0" text="Name_of_the_faculty" />
-                                        <TableColumn prefWidth="150.0" text="Dean" />
-                                          <TableColumn prefWidth="142.0" text="Phone_dean" />
-                                          <TableColumn prefWidth="212.0" text="Number_of_students_at_the_faculty" />
+                                        <TableColumn fx:id="ColumnFaculty1" prefWidth="138.0" text="Name_of_the_faculty" />
+                                        <TableColumn fx:id="ColumnFaculty2" prefWidth="150.0" text="Dean" />
+                                          <TableColumn fx:id="ColumnFaculty3" prefWidth="142.0" text="Phone_dean" />
+                                          <TableColumn fx:id="ColumnFaculty4" prefWidth="212.0" text="Number_of_students_at_the_faculty" />
                                       </columns>
                                     </TableView>
                                     <TableView fx:id="TableStudent" layoutX="28.0" layoutY="29.0" prefHeight="513.0" prefWidth="638.0" visible="false">
                                       <columns>
-                                        <TableColumn prefWidth="143.0" text="Number_record_book" />
-                                        <TableColumn prefWidth="154.0" text="Last_name" />
-                                          <TableColumn prefWidth="163.0" text="Year_of_birth" />
-                                          <TableColumn prefWidth="177.0" text="Name_of_the_group" />
+                                        <TableColumn fx:id="ColumnStudent1" prefWidth="143.0" text="Number_record_book" />
+                                        <TableColumn fx:id="ColumnStudent2" prefWidth="154.0" text="Last_name" />
+                                          <TableColumn fx:id="ColumnStudent3" prefWidth="163.0" text="Year_of_birth" />
+                                          <TableColumn fx:id="ColumnStudent4" prefWidth="177.0" text="Name_of_the_group" />
                                       </columns>
                                     </TableView>
                                     <TableView fx:id="TableStudentsGroup" layoutX="37.0" layoutY="29.0" prefHeight="505.0" prefWidth="627.0" visible="false">
                                       <columns>
-                                        <TableColumn prefWidth="126.0" text="Name_of_the_group" />
-                                        <TableColumn prefWidth="135.0" text="Name_of_the_faculty" />
-                                          <TableColumn prefWidth="125.0" text="Number_of_course" />
-                                          <TableColumn prefWidth="105.0" text="Direction" />
-                                          <TableColumn prefWidth="135.0" text="Name_of_cathedra" />
+                                        <TableColumn fx:id="ColumnStudentsGroup1" prefWidth="126.0" text="Name_of_the_group" />
+                                        <TableColumn fx:id="ColumnStudentsGroup2" prefWidth="135.0" text="Name_of_the_faculty" />
+                                          <TableColumn fx:id="ColumnStudentsGroup3" prefWidth="125.0" text="Number_of_course" />
+                                          <TableColumn fx:id="ColumnStudentsGroup4" prefWidth="105.0" text="Direction" />
+                                          <TableColumn fx:id="ColumnStudentsGroup5" prefWidth="135.0" text="Name_of_cathedra" />
                                       </columns>
                                     </TableView>
                                     <TableView fx:id="TableTeacher" layoutX="28.0" layoutY="29.0" prefHeight="513.0" prefWidth="647.0" visible="false">
                                       <columns>
-                                        <TableColumn prefWidth="144.0" text="Personal_number_teacher" />
-                                        <TableColumn prefWidth="66.0" text="Last_name" />
-                                          <TableColumn prefWidth="64.0" text="Job_title" />
-                                          <TableColumn prefWidth="64.0" text="Degree" />
-                                          <TableColumn prefWidth="136.0" text="Name_of_the_cathedra" />
-                                          <TableColumn prefWidth="69.0" text="Phone" />
-                                          <TableColumn prefWidth="103.0" text="Address" />
+                                        <TableColumn fx:id="ColumnTeacher1" prefWidth="144.0" text="Personal_number_teacher" />
+                                        <TableColumn fx:id="ColumnTeacher2" prefWidth="66.0" text="Last_name" />
+                                          <TableColumn fx:id="ColumnTeacher3" prefWidth="64.0" text="Job_title" />
+                                          <TableColumn fx:id="ColumnTeacher4" prefWidth="64.0" text="Degree" />
+                                          <TableColumn fx:id="ColumnTeacher5" prefWidth="136.0" text="Name_of_the_cathedra" />
+                                          <TableColumn fx:id="ColumnTeacher6" prefWidth="69.0" text="Phone" />
+                                          <TableColumn fx:id="ColumnTeacher7" prefWidth="103.0" text="Address" />
                                       </columns>
                                     </TableView>
                                  </children>
