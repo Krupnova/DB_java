@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.Tables.Cathedra;
@@ -379,7 +378,7 @@ public class ControllerFX {
     private TableView<?> TableTeacher; // Value injected by FXMLLoader
 
     @FXML // fx:id="TableCathedra"
-    private TableView<Cathedra> TableCathedra; // Value injected by FXMLLoader
+    private TableView<Object> TableCathedra; // Value injected by FXMLLoader
 
     @FXML
     private TableColumn<?, ?> ColumnStudent1;
@@ -676,17 +675,23 @@ public class ControllerFX {
                 TableStudentsGroup.setVisible(false);
                 TableTeacher.setVisible(false);
 
+
+                try {
+                    getResultFromDB(SQLQueryType.SELECT, "cathedra");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 /*result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]
                         + " WHERE " + args[1] + " = " + args[2]);*/
 
-               /* ObservableList<Cathedra> usersData = FXCollections.observableArrayList();
+                /*ObservableList<Cathedra> usersData = FXCollections.observableArrayList();
                 ColumnCath1.setCellValueFactory(new PropertyValueFactory<Cathedra, String>("name_cathedra"));
-                TableCathedra.setItems(usersData.add("qq"));*/
+                TableCathedra.setItems(usersData.add("qq"),);*/
 
                 //если нажата кнопка добавить запись то вызываем функцию с определенным типом запроса дл€ опред талицы
                 add.setOnAction(event2 -> {
 
-                  // AddToDatabase(SQLTable.CATHEDRA, SQLQueryType.INSERT);
+                    // AddToDatabase(SQLTable.CATHEDRA, SQLQueryType.INSERT);
                     String textCathAdd1 = new String();
                     textCathAdd1 = nameCathedraCath.getText();
                     String textCathAdd2 = new String();
@@ -697,7 +702,7 @@ public class ControllerFX {
                     textCathAdd4 = numberEDCath.getText();
 
                     try {
-                        getResultFromDB (SQLQueryType.INSERT, "cathedra", textCathAdd1,textCathAdd2, textCathAdd3, textCathAdd4);
+                        getResultFromDB(SQLQueryType.INSERT, "cathedra", textCathAdd1, textCathAdd2, textCathAdd3, textCathAdd4);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -1221,7 +1226,7 @@ public class ControllerFX {
         this.guiRoot = source;
     }
 
-    private void AddToDatabase(SQLTable table, SQLQueryType query) {
+   /* private void AddToDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
 
     }
@@ -1232,7 +1237,7 @@ public class ControllerFX {
 
     private void UpdateDatabase(SQLTable table, SQLQueryType query) {
         System.out.println("table " + table.toString() + " query " + query.toString());
-    }
+    }*/
 
     /*
     * “ранзакци€ - это комплексна€ операци€, состо€ща€ из группы операций, которые выполн€ютс€ либо все,
@@ -1318,6 +1323,14 @@ public class ControllerFX {
 
                     if (args.length == 1) {
                         result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]);
+                        //System.out.println(result.toString());
+                        while (result.next()){
+                           String test = result.getString("Name_of_the_cathedra");
+                            ObservableList<Object> data = FXCollections.observableArrayList(test);
+                            TableCathedra.setItems(data);
+                            System.out.println(test);
+
+                        }
                     } else {
                         result = statement.executeQuery("SELECT * FROM " + DB_SCHEMA_NAME + '.' + args[0]
                                 + " WHERE " + args[1] + " = " + args[2]);
@@ -1406,11 +1419,6 @@ public class ControllerFX {
                         numberStudents.clear();
                     }
                 }
-
-                break;
-            }
-            case UPDATE:{
-
 
                 break;
             }
